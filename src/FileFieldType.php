@@ -1,4 +1,4 @@
-<?php namespace Addon\FieldType\File;
+<?php namespace Streams\Addon\FieldType\File;
 
 use Streams\Core\Addon\FieldTypeAbstract;
 
