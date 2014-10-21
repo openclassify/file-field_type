@@ -1,8 +1,8 @@
-<?php namespace Anomaly\Streams\FieldType\File;
+<?php namespace Anomaly\Streams\Addon\FieldType\File;
 
-use Streams\Core\Addon\FieldTypeAbstract;
+use Anomaly\Streams\Platform\Addon\FieldType\FieldTypeAddon;
 
-class FileFieldType extends FieldTypeAbstract
+class FileFieldType extends FieldTypeAddon
 {
     /**
      * The database column type this field type uses.
