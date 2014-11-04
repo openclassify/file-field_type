@@ -1,8 +1,8 @@
 <?php namespace Anomaly\Streams\Addon\FieldType\File;
 
-use Anomaly\Streams\Platform\Addon\FieldType\FieldTypeAddon;
+use Anomaly\Streams\Platform\Addon\FieldType\FieldType;
 
-class FileFieldType extends FieldTypeAddon
+class FileFieldType extends FieldType
 {
     public $settings = array(
         'allowedFileTypes',
