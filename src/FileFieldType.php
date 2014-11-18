@@ -4,17 +4,9 @@ use Anomaly\Streams\Platform\Addon\FieldType\FieldType;
 
 class FileFieldType extends FieldType
 {
-    public $settings = array(
-        'allowedFileTypes',
-    );
 
-    public function relation()
+    public function getRelation()
     {
-        return $this->belongsTo($this->getParameter('relation_class', 'Files\Model\File'));
-    }
-
-    public function input()
-    {
-        return \Form::file($this->formSlug);
+        return $this->belongsTo($this->getConfig('related', 'Files\Model\File'));
     }
 }
