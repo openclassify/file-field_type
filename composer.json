@@ -1,5 +1,5 @@
 {
-    "name": "anomaly/file-field-type",
+    "name": "anomaly/file-field_type",
     "type": "streams-addon",
     "description": "File field type.",
     "authors": [
