@@ -1,4 +1,4 @@
-<?php namespace Anomaly\Streams\Addon\FieldType\File;
+<?php namespace Anomaly\FileFieldType;
 
 use Anomaly\Streams\Platform\Addon\FieldType\FieldType;
 
