@@ -7,6 +7,6 @@ class FileFieldType extends FieldType
 
     public function getRelation()
     {
-        return $this->belongsTo($this->pullConfig('related', 'Files\Model\File'));
+        return $this->belongsTo(array_get($this->config, 'related', 'Files\Model\File'));
     }
 }
