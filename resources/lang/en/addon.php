@@ -1,5 +1,6 @@
 <?php
 
 return array(
-    'name' => 'File',
+    'name'        => 'File',
+    'description' => 'A file uploader field type.'
 );
