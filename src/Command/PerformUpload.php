@@ -1,8 +1,10 @@
 <?php namespace Anomaly\FileFieldType\Command;
 
 use Anomaly\FileFieldType\FileFieldType;
+use Anomaly\FileFieldType\FileFieldTypeParser;
 use Anomaly\FilesModule\Disk\Contract\DiskRepositoryInterface;
 use Anomaly\FilesModule\File\Contract\FileInterface;
+use Anomaly\FilesModule\File\Contract\FileRepositoryInterface;
 use Illuminate\Contracts\Bus\SelfHandling;
 use Illuminate\Http\Request;
 use League\Flysystem\MountManager;
@@ -39,17 +41,37 @@ class PerformUpload implements SelfHandling
      * Handle the command.
      *
      * @param DiskRepositoryInterface $disks
+     * @param FileRepositoryInterface $files
+     * @param FileFieldTypeParser     $parser
      * @param Request                 $request
      * @param MountManager            $manager
      * @return null|bool|FileInterface
      */
-    public function handle(DiskRepositoryInterface $disks, Request $request, MountManager $manager)
-    {
+    public function handle(
+        DiskRepositoryInterface $disks,
+        FileRepositoryInterface $files,
+        FileFieldTypeParser $parser,
+        Request $request,
+        MountManager $manager
+    ) {
         $path = trim(array_get($this->fieldType->getConfig(), 'path'), './');
 
-        // Make sure we have an upload.
-        if (($file = $request->file($this->fieldType->getInputName())) === null) {
-            return null;
+        $entry = $this->fieldType->getEntry();
+
+        $file  = $request->file($this->fieldType->getInputName());
+        $value = $request->get($this->fieldType->getInputName() . '_id');
+
+        /**
+         * Make sure we have at least
+         * some kind of input.
+         */
+        if ($file === null) {
+
+            if (!$value) {
+                return null;
+            }
+
+            return $files->find($value);
         }
 
         // Make sure we have a valid upload disk.
@@ -60,6 +82,7 @@ class PerformUpload implements SelfHandling
         }
 
         // Make the path.
+        $path = $parser->parse($path, $this->fieldType);
         $path = (!empty($path) ? $path . '/' : null) . $file->getClientOriginalName();
 
         return $manager->putStream($disk->path($path), fopen($file->getRealPath(), 'r+'));
