@@ -1,6 +1,7 @@
 <?php namespace Anomaly\FileFieldType;
 
 use Anomaly\Streams\Platform\Addon\FieldType\FieldType;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * Class FileFieldType
@@ -20,4 +21,28 @@ class FileFieldType extends FieldType
      */
     protected $inputView = 'anomaly.field_type.file::input';
 
+    /**
+     * Get the relation.
+     *
+     * @return BelongsTo
+     */
+    public function getRelation()
+    {
+        $entry = $this->getEntry();
+
+        return $entry->belongsTo(
+            array_get($this->config, 'related', 'Anomaly\FilesModule\File\FileModel'),
+            $this->getColumnName()
+        );
+    }
+
+    /**
+     * Get the database column name.
+     *
+     * @return null|string
+     */
+    public function getColumnName()
+    {
+        return parent::getColumnName() . '_id';
+    }
 }
