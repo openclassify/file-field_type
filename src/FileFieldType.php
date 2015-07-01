@@ -1,5 +1,7 @@
 <?php namespace Anomaly\FileFieldType;
 
+use Anomaly\FileFieldType\Command\PerformUpload;
+use Anomaly\FilesModule\File\Contract\FileInterface;
 use Anomaly\Streams\Platform\Addon\FieldType\FieldType;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -34,6 +36,17 @@ class FileFieldType extends FieldType
             array_get($this->config, 'related', 'Anomaly\FilesModule\File\FileModel'),
             $this->getColumnName()
         );
+    }
+
+    /**
+     * Get the post value.
+     *
+     * @param null $default
+     * @return null|FileInterface
+     */
+    public function getPostValue($default = null)
+    {
+        return $this->dispatch(new PerformUpload($this));
     }
 
     /**
