@@ -59,7 +59,7 @@ class PerformUpload implements SelfHandling
 
         $entry = $this->fieldType->getEntry();
 
-        $file = $request->file($this->fieldType->getInputName());
+        $file  = $request->file($this->fieldType->getInputName());
         $value = $request->get($this->fieldType->getInputName() . '_id');
 
         /**
