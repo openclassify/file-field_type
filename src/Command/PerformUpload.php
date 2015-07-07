@@ -45,6 +45,7 @@ class PerformUpload implements SelfHandling
      * @param FileFieldTypeParser     $parser
      * @param Request                 $request
      * @param MountManager            $manager
+     *
      * @return null|bool|FileInterface
      */
     public function handle(
@@ -74,11 +75,14 @@ class PerformUpload implements SelfHandling
             return $files->find($value);
         }
 
-        // Make sure we have a valid upload disk.
-        if (!$disk = $disks->find($id = array_get($this->fieldType->getConfig(), 'disk'))) {
-            throw new \Exception(
-                "The configured disk [{$id}] for [{$this->fieldType->getInputName()}] could not be found."
-            );
+        // Make sure we have a valid upload disk. First by slug.
+        if (!$disk = $disks->findBySlug($slug = array_get($this->fieldType->getConfig(), 'disk'))) {
+            // If that fails look up by id.
+            if (!$disk = $disks->find($id = array_get($this->fieldType->getConfig(), 'disk'))) {
+                throw new \Exception(
+                    "The configured disk [{$id}] for [{$this->fieldType->getInputName()}] could not be found."
+                );
+            }
         }
 
         // Make the path.
