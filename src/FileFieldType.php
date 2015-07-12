@@ -1,5 +1,6 @@
 <?php namespace Anomaly\FileFieldType;
 
+use Anomaly\FileFieldType\Command\GetUploadFile;
 use Anomaly\FileFieldType\Command\PerformUpload;
 use Anomaly\FilesModule\File\Contract\FileInterface;
 use Anomaly\Streams\Platform\Addon\FieldType\FieldType;
@@ -39,6 +40,30 @@ class FileFieldType extends FieldType
     }
 
     /**
+     * Get the rules.
+     *
+     * @return array
+     */
+    public function getRules()
+    {
+        $rules = parent::getRules();
+
+        if ($image = array_get($this->getConfig(), 'image')) {
+            $rules[] = 'image';
+        }
+
+        if ($mimes = array_get($this->getConfig(), 'mimes')) {
+            $rules[] = 'mimes:' . implode(',', $mimes);
+        }
+
+        if ($max = array_get($this->getConfig(), 'max')) {
+            $rules[] = 'max:' . $max * 1000;
+        }
+
+        return $rules;
+    }
+
+    /**
      * Get the post value.
      *
      * @param null $default
@@ -47,6 +72,17 @@ class FileFieldType extends FieldType
     public function getPostValue($default = null)
     {
         return $this->dispatch(new PerformUpload($this));
+    }
+
+    /**
+     * Get the value to validate.
+     *
+     * @param null $default
+     * @return FileInterface
+     */
+    public function getValidationValue($default = null)
+    {
+        return $this->dispatch(new GetUploadFile($this));
     }
 
     /**
