@@ -1,12 +1,11 @@
 {
     "name": "anomaly/file-field_type",
     "type": "streams-addon",
-    "description": "A file input field type.",
+    "description": "A file upload field type.",
     "keywords": [
-        "streams-addon",
-        "file",
-        "pyrocms",
-        "laravel"
+        "streams field type",
+        "streams addon",
+        "field type"
     ],
     "homepage": "http://anomaly.is/",
     "version": "1.0.0",
@@ -14,13 +13,13 @@
     "authors": [
         {
             "name": "AnomalyLabs, Inc.",
-            "file": "hello@anomaly.is",
+            "email": "hello@anomaly.is",
             "homepage": "http://anomaly.is/",
             "role": "Owner"
         }
     ],
     "support": {
-        "file": "support@anomaly.is"
+        "email": "support@anomaly.is"
     },
     "autoload": {
         "psr-4": {
@@ -29,8 +28,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "1.0.x-dev"
+            "dev-1.0/master": "1.0.x-dev"
         }
-    },
-    "minimum-stability": "dev"
+    }
 }

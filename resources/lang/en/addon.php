@@ -2,5 +2,5 @@
 
 return [
     'name'        => 'File',
-    'description' => 'A file uploader field type.'
+    'description' => 'A file upload field type.'
 ];
