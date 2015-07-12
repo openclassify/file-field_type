@@ -44,10 +44,6 @@ class FileFieldTypeModifier extends FieldTypeModifier
      */
     public function modify($value)
     {
-        if (!$this->needsModifying($value)) {
-            return $value;
-        }
-
         if ($value instanceof FileInterface) {
             return $value->getId();
         }
@@ -63,7 +59,7 @@ class FileFieldTypeModifier extends FieldTypeModifier
      */
     public function restore($value)
     {
-        if (!$this->needsRestoring($value)) {
+        if ($value instanceof FileInterface) {
             return $value;
         }
 
@@ -72,29 +68,5 @@ class FileFieldTypeModifier extends FieldTypeModifier
         }
 
         return null;
-    }
-
-    /**
-     * Return whether the value
-     * needs to be modified.
-     *
-     * @param $value
-     * @return bool
-     */
-    protected function needsModifying($value)
-    {
-        return $value instanceof FileInterface;
-    }
-
-    /**
-     * Return whether the value
-     * needs to be restored.
-     *
-     * @param $value
-     * @return bool
-     */
-    protected function needsRestoring($value)
-    {
-        return !$value instanceof FileInterface;
     }
 }

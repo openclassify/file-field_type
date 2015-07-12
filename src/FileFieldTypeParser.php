@@ -39,6 +39,8 @@ class FileFieldTypeParser
      */
     public function parse($target, FileFieldType $fieldType)
     {
-        return $this->parser->parse($target, []);
+        $entry = $fieldType->getEntry();
+
+        return $this->parser->parse($target, compact('entry'));
     }
 }
