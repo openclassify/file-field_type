@@ -25,3 +25,11 @@
         {{ trans('anomaly.field_type.file::button.remove') }}
     </a>
 </div>
+
+{% if field_type.value %}
+    <a href="{{ url(field_type.value.public_path) }}" target="_blank">
+        <small>
+            {{ url(field_type.value.public_path) }}
+        </small>
+    </a>
+{% endif %}
