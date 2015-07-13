@@ -27,9 +27,7 @@
 </div>
 
 {% if field_type.value %}
-    <a href="{{ url(field_type.value.public_path) }}" target="_blank">
-        <small>
-            {{ url(field_type.value.public_path) }}
-        </small>
+    <a href="{{ url(field_type.value.public_path) }}" class="small" target="_blank">
+        {{ url(field_type.value.public_path) }}
     </a>
 {% endif %}
