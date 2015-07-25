@@ -57,8 +57,6 @@ class PerformUpload implements SelfHandling
     ) {
         $path = trim(array_get($this->fieldType->getConfig(), 'path'), './');
 
-        $entry = $this->fieldType->getEntry();
-
         $file  = $request->file($this->fieldType->getInputName());
         $value = $request->get($this->fieldType->getInputName() . '_id');
 
@@ -79,9 +77,7 @@ class PerformUpload implements SelfHandling
         if (!$disk = $disks->findBySlug($slug = array_get($this->fieldType->getConfig(), 'disk'))) {
             // If that fails look up by id.
             if (!$disk = $disks->find($id = array_get($this->fieldType->getConfig(), 'disk'))) {
-                throw new \Exception(
-                    "The configured disk [{$id}] for [{$this->fieldType->getInputName()}] could not be found."
-                );
+                return null;
             }
         }
 

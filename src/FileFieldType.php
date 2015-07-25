@@ -2,6 +2,7 @@
 
 use Anomaly\FileFieldType\Command\GetUploadFile;
 use Anomaly\FileFieldType\Command\PerformUpload;
+use Anomaly\FileFieldType\Validation\ValidateDisk;
 use Anomaly\FilesModule\File\Contract\FileInterface;
 use Anomaly\Streams\Platform\Addon\FieldType\FieldType;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -23,6 +24,27 @@ class FileFieldType extends FieldType
      * @var string
      */
     protected $inputView = 'anomaly.field_type.file::input';
+
+    /**
+     * The field type rules.
+     *
+     * @var array
+     */
+    protected $rules = [
+        'valid_disk'
+    ];
+
+    /**
+     * The field type validators.
+     *
+     * @var array
+     */
+    protected $validators = [
+        'valid_disk' => [
+            'handler' => ValidateDisk::class,
+            'message' => 'anomaly.field_type.file::validation.valid_disk'
+        ]
+    ];
 
     /**
      * Get the relation.
