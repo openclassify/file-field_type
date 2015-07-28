@@ -8,6 +8,6 @@ This field type returns the file interface instance as a value. You may access t
 // Twig usage
 {{ entry.example.public_path }} or {{ url(entry.example.imagePath({'fit': '100,100'})) }}
 
-// API Usage
+// API usage
 $entry->example->public_path; or url($entry->example->imagePath(['fit' => '100,100']));
 ```
