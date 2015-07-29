@@ -17,6 +17,12 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  */
 class FileFieldType extends FieldType
 {
+    /**
+     * The underlying database column type
+     *
+     * @var string
+     */
+    protected $columnType = 'integer';
 
     /**
      * The input view.
