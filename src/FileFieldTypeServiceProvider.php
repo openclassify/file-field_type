@@ -1,5 +1,7 @@
 <?php namespace Anomaly\FileFieldType;
 
+use Anomaly\Streams\Platform\Addon\AddonServiceProvider;
+
 /**
  * Class FileFieldTypeServiceProvider
  *
@@ -8,7 +10,7 @@
  * @author        Ryan Thompson <ryan@anomaly.is>
  * @package       Anomaly\FileFieldType
  */
-class FileFieldTypeServiceProvider
+class FileFieldTypeServiceProvider extends AddonServiceProvider
 {
 
     /**
