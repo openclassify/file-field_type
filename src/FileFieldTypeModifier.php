@@ -2,7 +2,6 @@
 
 use Anomaly\FilesModule\File\Contract\FileInterface;
 use Anomaly\FilesModule\File\Contract\FileRepositoryInterface;
-use Anomaly\Streams\Platform\Addon\FieldType\FieldType;
 use Anomaly\Streams\Platform\Addon\FieldType\FieldTypeModifier;
 
 /**
@@ -26,14 +25,11 @@ class FileFieldTypeModifier extends FieldTypeModifier
     /**
      * Create a new FileFieldTypeModifier instance.
      *
-     * @param FieldType               $fieldType
      * @param FileRepositoryInterface $files
      */
-    public function __construct(FieldType $fieldType, FileRepositoryInterface $files)
+    public function __construct(FileRepositoryInterface $files)
     {
         $this->files = $files;
-
-        parent::__construct($fieldType);
     }
 
     /**
