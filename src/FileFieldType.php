@@ -91,6 +91,11 @@ class FileFieldType extends FieldType
         }
 
         if ($mimes = array_get($this->getConfig(), 'mimes')) {
+            
+            if (in_array('jpg', $mimes) || in_array('jpeg', $mimes)) {
+                $mimes = array_unique(array_merge($mimes, ['jpg', 'jpeg']));
+            }
+
             $rules[] = 'mimes:' . implode(',', $mimes);
         }
 
