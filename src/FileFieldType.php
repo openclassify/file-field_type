@@ -17,6 +17,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  */
 class FileFieldType extends FieldType
 {
+
     /**
      * The underlying database column type
      *
@@ -157,5 +158,19 @@ class FileFieldType extends FieldType
     public function getColumnName()
     {
         return parent::getColumnName() . '_id';
+    }
+
+    /**
+     * Return the required flag.
+     *
+     * @return bool
+     */
+    public function isRequired()
+    {
+        if ($_POST && $value = array_get($_POST, $this->getInputName() . '_id')) {
+            return false;
+        }
+
+        return parent::isRequired();
     }
 }
