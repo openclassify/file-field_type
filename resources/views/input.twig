@@ -2,7 +2,9 @@
 {{ asset_add('scripts.js', 'anomaly.field_type.file::js/fileinput.min.js') }}
 {{ asset_add('scripts.js', 'anomaly.field_type.file::js/input.js') }}
 
-<div class="fileinput fileinput-{{ field_type.value ? 'exists' : 'new' }} input-group" data-provides="fileinput">
+<div
+        class="fileinput fileinput-{{ field_type.value ? 'exists' : 'new' }} input-group {{ field_type.required ? 'required' }} {{ field_type.disabled ? 'disabled' }} {{ field_type.readonly ? 'readonly' }}"
+        data-provides="fileinput">
     <div class="form-control" data-trigger="fileinput">
         <i class="glyphicons glyphicons-paperclip fileinput-exists"></i>
         <span class="fileinput-filename">
@@ -18,7 +20,12 @@
             {{ trans('anomaly.field_type.file::button.change') }}
         </span>
         <input type="hidden" name="{{ field_type.input_name }}_id" value="{{ field_type.value.id }}">
-        <input type="file" name="{{ field_type.input_name }}">
+        <input
+                type="file"
+                name="{{ field_type.input_name }}"
+                {{ field_type.required ? 'required' }}
+                {{ field_type.disabled ? 'disabled' }}
+                {{ field_type.readonly ? 'readonly' }}>
     </span>
 
     <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">

@@ -53,6 +53,26 @@
     .uneditable-input [class^="fui-"] {
         margin-right: .3em;
     }
+
+    &.disabled {
+        .form-control {
+            opacity: 0.8;
+            color: #5c5c5c;
+            cursor: not-allowed;
+            border-color: #dfe4e4;
+            background-color: #fafbfb;
+        }
+
+        .btn {
+            opacity: 0.5;
+
+            &:hover {
+                cursor: not-allowed;
+                border-color: #bdc3c7;
+                background-color: #bdc3c7;
+            }
+        }
+    }
 }
 
 .fileinput-exists .fileinput-new,

@@ -1,26 +1,29 @@
 <?php
 
 return [
-    'disk'  => [
+    'disk'    => [
         'type'     => 'anomaly.field_type.relationship',
         'required' => true,
         'config'   => [
             'related' => 'Anomaly\FilesModule\Disk\DiskModel'
         ]
     ],
-    'path'  => [
+    'path'    => [
         'type'  => 'anomaly.field_type.text',
         'rules' => [
             'regex:/^[a-zA-Z0-9_\s\/]+$/'
         ]
     ],
-    'image' => [
-        'type' => 'anomaly.field_type.boolean'
-    ],
-    'mimes' => [
+    'options' => [
         'type' => 'anomaly.field_type.tags'
     ],
-    'max'   => [
+    'image'   => [
+        'type' => 'anomaly.field_type.boolean'
+    ],
+    'mimes'   => [
+        'type' => 'anomaly.field_type.tags'
+    ],
+    'max'     => [
         'type'     => 'anomaly.field_type.integer',
         'required' => true,
         'config'   => [
