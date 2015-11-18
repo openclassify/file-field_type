@@ -1,11 +1,10 @@
 $(function () {
 
-    // Initialize colorpickers
-    $('.file-field-type [data-dismiss="fileinput"]').each(function () {
+    // Initialize file pickers
+    $('.file-field-type').each(function () {
 
-        // Remove ID on click.
-        $(this).on('click', function () {
-            $(this).closest('.fileinput').find('input[type="hidden"]').val('');
+        $(this).find('input[data-toggle="choose"]').focus(function () {
+            $(this).closest('.input-group').find('[data-toggle="modal"]').trigger('click');
         });
     });
 });

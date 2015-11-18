@@ -1,27 +1,17 @@
 <?php
 
 return [
-    'disk'    => [
-        'type'     => 'anomaly.field_type.relationship',
+    'folders' => [
+        'type'     => 'anomaly.field_type.checkboxes',
         'required' => true,
         'config'   => [
-            'related' => 'Anomaly\FilesModule\Disk\DiskModel'
+            'options' => function (\Anomaly\FilesModule\Folder\Contract\FolderRepositoryInterface $folders) {
+
+                $folders = $folders->all();
+
+                return $folders->lists('name', 'id')->all();
+            }
         ]
-    ],
-    'path'    => [
-        'type'  => 'anomaly.field_type.text',
-        'rules' => [
-            'regex:/^[a-zA-Z0-9_\s\/]+$/'
-        ]
-    ],
-    'options' => [
-        'type' => 'anomaly.field_type.tags'
-    ],
-    'image'   => [
-        'type' => 'anomaly.field_type.boolean'
-    ],
-    'mimes'   => [
-        'type' => 'anomaly.field_type.tags'
     ],
     'max'     => [
         'type'     => 'anomaly.field_type.integer',

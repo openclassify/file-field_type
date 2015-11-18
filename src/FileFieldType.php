@@ -1,9 +1,5 @@
 <?php namespace Anomaly\FileFieldType;
 
-use Anomaly\FileFieldType\Command\GetUploadFile;
-use Anomaly\FileFieldType\Command\PerformUpload;
-use Anomaly\FileFieldType\Validation\ValidateDisk;
-use Anomaly\FilesModule\File\Contract\FileInterface;
 use Anomaly\Streams\Platform\Addon\FieldType\FieldType;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -31,27 +27,6 @@ class FileFieldType extends FieldType
      * @var string
      */
     protected $inputView = 'anomaly.field_type.file::input';
-
-    /**
-     * The field type rules.
-     *
-     * @var array
-     */
-    protected $rules = [
-        'valid_disk'
-    ];
-
-    /**
-     * The field type validators.
-     *
-     * @var array
-     */
-    protected $validators = [
-        'valid_disk' => [
-            'handler' => ValidateDisk::class,
-            'message' => 'anomaly.field_type.file::validation.valid_disk'
-        ]
-    ];
 
     /**
      * The field type config.
@@ -91,7 +66,7 @@ class FileFieldType extends FieldType
         }
 
         if ($mimes = array_get($this->getConfig(), 'mimes')) {
-            
+
             if (in_array('jpg', $mimes) || in_array('jpeg', $mimes)) {
                 $mimes = array_unique(array_merge($mimes, ['jpg', 'jpeg']));
             }
@@ -134,28 +109,6 @@ class FileFieldType extends FieldType
     }
 
     /**
-     * Get the post value.
-     *
-     * @param null $default
-     * @return null|FileInterface
-     */
-    public function getPostValue($default = null)
-    {
-        return $this->dispatch(new PerformUpload($this));
-    }
-
-    /**
-     * Get the value to validate.
-     *
-     * @param null $default
-     * @return FileInterface
-     */
-    public function getValidationValue($default = null)
-    {
-        return $this->dispatch(new GetUploadFile($this));
-    }
-
-    /**
      * Get the database column name.
      *
      * @return null|string
@@ -163,19 +116,5 @@ class FileFieldType extends FieldType
     public function getColumnName()
     {
         return parent::getColumnName() . '_id';
-    }
-
-    /**
-     * Return the required flag.
-     *
-     * @return bool
-     */
-    public function isRequired()
-    {
-        if ($_POST && $value = array_get($_POST, $this->getInputName() . '_id')) {
-            return false;
-        }
-
-        return parent::isRequired();
     }
 }

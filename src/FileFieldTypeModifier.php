@@ -45,7 +45,7 @@ class FileFieldTypeModifier extends FieldTypeModifier
         }
 
         if ($value && $file = $this->files->find($value)) {
-            return $file;
+            return $file->getId();
         }
 
         return null;
