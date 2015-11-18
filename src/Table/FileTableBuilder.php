@@ -69,6 +69,15 @@ class FileTableBuilder extends TableBuilder
     ];
 
     /**
+     * The table options.
+     *
+     * @var array
+     */
+    protected $options = [
+        'title' => 'anomaly.field_type.file::message.choose_file'
+    ];
+
+    /**
      * The table assets.
      *
      * @var array
