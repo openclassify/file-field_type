@@ -49,24 +49,12 @@ class FileTableBuilder extends TableBuilder
         ],
         'filename'      => [
             'sort_column' => 'filename',
-            'wrapper'     => '<h4 style="margin: 0 0 3px;">{value.filename}<br><small>{value.keywords}</small></h4>',
+            'wrapper'     => '<h4 style="margin: 0 0 3px;"><a href="#" data-file="{entry.id}" data-filename="{entry.filename}">{value.filename}</a><br><small>{value.keywords}</small></h4>',
             'value'       => [
                 'filename' => 'entry.filename',
                 'keywords' => 'entry.keywords.labels'
             ]
         ],
-    ];
-
-    /**
-     * The table buttons.
-     *
-     * @var array
-     */
-    protected $buttons = [
-        'select' => [
-            'data-file'     => 'entry.id',
-            'data-filename' => 'entry.filename'
-        ]
     ];
 
     /**

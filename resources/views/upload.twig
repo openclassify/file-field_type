@@ -1,0 +1,44 @@
+{{ asset_add('scripts.js', 'anomaly.field_type.file::js/dropzone.min.js') }}
+{{ asset_add('scripts.js', 'anomaly.field_type.file::js/upload.js') }}
+{{ asset_add('styles.css', 'anomaly.field_type.file::less/upload.less') }}
+
+{% for path in asset_paths("styles.css") %}
+    {{ html_style(path) }}
+{% endfor %}
+
+{% for path in asset_paths("scripts.js") %}
+    {{ html_script(path) }}
+{% endfor %}
+
+<div class="modal-header">
+    <button class="close" data-dismiss="modal">
+        <span>&times;</span>
+    </button>
+    <h4 class="modal-title">{{ trans('anomaly.field_type.file::message.upload') }}</h4>
+</div>
+
+<div class="modal-body">
+
+    <div
+            id="upload"
+            data-max="{{ field_type.config.max_size }}"
+            data-folder="{{ folder.id }}"
+            data-mimes="{{ field_type.config.mimes|join(',') }}"
+            data-message="{{ trans('anomaly.field_type.files::input.dropzone') }}">
+
+        <div class="dropzone">
+            {{ icon('upload', 'icon') }}
+        </div>
+
+        <ul class="list-unstyled list-files sortable">
+            {% include "anomaly.field_type.files::files" %}
+            {% include "anomaly.field_type.files::template" %}
+        </ul>
+
+    </div>
+
+</div>
+
+<div id="table">
+    TABLE
+</div>
