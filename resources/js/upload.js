@@ -8,7 +8,7 @@ $(function () {
         var myDropzone = new Dropzone('.dropzone',
             {
                 paramName: 'upload',
-                url: '/streams/files-field_type/upload',
+                url: '/streams/file-field_type/handle',
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
@@ -59,7 +59,7 @@ $(function () {
 
             wrapper.data('uploaded', uploaded.join(','));
 
-            $('#table').load('/streams/file-field_type/test?uploaded=' + wrapper.data('uploaded'));
+            $('#table').load('/streams/file-field_type/uploaded?uploaded=' + wrapper.data('uploaded'));
         });
 
         // Hide the progress bar when done.
