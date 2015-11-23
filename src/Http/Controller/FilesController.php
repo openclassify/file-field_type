@@ -6,6 +6,7 @@ use Anomaly\FilesModule\File\Contract\FileInterface;
 use Anomaly\FilesModule\Folder\Contract\FolderInterface;
 use Anomaly\FilesModule\Folder\Contract\FolderRepositoryInterface;
 use Anomaly\Streams\Platform\Http\Controller\AdminController;
+use Anomaly\Streams\Platform\Stream\Contract\StreamRepositoryInterface;
 use Illuminate\Database\Eloquent\Builder;
 use League\Flysystem\MountManager;
 
@@ -20,9 +21,14 @@ use League\Flysystem\MountManager;
 class FilesController extends AdminController
 {
 
-    public function index(FileTableBuilder $table, $id)
+    public function index(FileTableBuilder $table, StreamRepositoryInterface $streams, $namespace, $stream, $field)
     {
-        return $table->setOption('attributes.id', $id)->render();
+        $stream    = $streams->findBySlugAndNamespace($stream, $namespace);
+        $fieldType = $stream->getFieldType($field);
+
+        dd($fieldType);
+
+        return $table->setOption('attributes.id', $field)->render();
     }
 
     /**
@@ -65,6 +71,7 @@ class FilesController extends AdminController
         );
 
         /* @var FileInterface $file */
+
         return $this->response->json($file->getAttributes());
     }
 
