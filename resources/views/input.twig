@@ -1,39 +1,46 @@
 {{ asset_add('scripts.js', 'anomaly.field_type.file::js/input.js') }}
 
-<div class="input-group">
+<a
+        data-toggle="modal"
+        data-target="#modal"
+        class="btn btn-default btn-xs"
+        href="{{ url(field_type.index_path) }}"
+        >{{ trans('anomaly.field_type.file::button.select_file') }}</a>
 
-    <span class="input-group-btn">
-        <a
-                href="{{ url('streams/file-field_type/files/' ~ field_type.input_name) }}"
-                data-toggle="modal"
-                data-target="#modal"
-                class="btn btn-default"
-                >{{ trans('anomaly.field_type.file::button.choose_file') }}</a>
-    </span>
+<a
+        data-toggle="modal"
+        data-target="#modal"
+        href="{{ url(field_type.upload_path) }}"
+        class="btn btn-success btn-xs {{ field_type.value.id ?: 'hidden' }}"
+        >{{ trans('anomaly.field_type.file::button.upload') }}</a>
 
-    <input
-            type="hidden"
-            name="{{ field_type.input_name }}"
-            value="{{ field_type.value.id }}"
-            {{ field_type.disabled ? 'disabled' }}
-            {{ field_type.readonly ? 'readonly' }}>
+<a
+        target="_blank"
+        href="{{ url('admin/files/view/' ~ field_type.value.id) }}"
+        class="btn btn-info btn-xs {{ field_type.value.id ?: 'hidden' }}"
+        >{{ trans('streams::button.view') }}</a>
 
-    <input
-            type="text"
-            class="form-control"
-            data-toggle="choose"
-            name="{{ field_type.input_name }}_filename"
-            value="{{ field_type.value.filename }}"
-            placeholder="{{ trans(field_type.placeholder) }}"
-            {{ field_type.disabled ? 'disabled' }}
-            {{ field_type.readonly ? 'readonly' }}>
+<a
+        target="_blank"
+        href="{{ url('admin/files/edit/' ~ field_type.value.id) }}"
+        class="btn btn-warning btn-xs {{ field_type.value.id ?: 'hidden' }}"
+        >{{ trans('streams::button.edit') }}</a>
 
-    <span class="input-group-btn">
-        <a
-                href="#"
-                data-dismiss="file"
-                class="btn btn-default"
-                >{{ trans('anomaly.field_type.file::button.remove') }}</a>
-    </span>
+<a
+        href="#"
+        data-dismiss="file"
+        class="btn btn-danger btn-xs {{ field_type.value.id ?: 'hidden' }}"
+        >{{ trans('anomaly.field_type.file::button.remove') }}</a>
 
-</div>
+<input
+        type="hidden"
+        name="{{ field_type.input_name }}"
+        value="{{ field_type.value.id }}"
+        {{ field_type.disabled ? 'disabled' }}
+        {{ field_type.readonly ? 'readonly' }}>
+
+<hr>
+
+{% if field_type.value.id %}
+        {{ view("anomaly.field_type.file::value", {'file': field_type.value}) }}
+{% endif %}

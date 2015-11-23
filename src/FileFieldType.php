@@ -117,4 +117,32 @@ class FileFieldType extends FieldType
     {
         return parent::getColumnName() . '_id';
     }
+
+    /**
+     * Get the index path.
+     *
+     * @return string
+     */
+    public function getIndexPath()
+    {
+        $field     = $this->getField();
+        $stream    = $this->entry->getStreamSlug();
+        $namespace = $this->entry->getStreamNamespace();
+
+        return "streams/file-field_type/index/{$namespace}/{$stream}/{$field}";
+    }
+
+    /**
+     * Get the upload path.
+     *
+     * @return string
+     */
+    public function getUploadPath()
+    {
+        $field     = $this->getField();
+        $stream    = $this->entry->getStreamSlug();
+        $namespace = $this->entry->getStreamNamespace();
+
+        return "streams/file-field_type/choose/{$namespace}/{$stream}/{$field}";
+    }
 }

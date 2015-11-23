@@ -14,25 +14,25 @@ class FileFieldTypeServiceProvider extends AddonServiceProvider
 {
 
     /**
-     * The addon routes.
-     *
-     * @var array
-     */
-    protected $routes = [
-        'streams/file-field_type/files/{id}' => 'Anomaly\FileFieldType\Http\Controller\FilesController@index',
-        'streams/file-field_type/choose'     => 'Anomaly\FileFieldType\Http\Controller\FilesController@choose',
-        'streams/file-field_type/upload'     => 'Anomaly\FileFieldType\Http\Controller\FilesController@upload',
-        'streams/file-field_type/handle'     => 'Anomaly\FileFieldType\Http\Controller\FilesController@handle',
-        'streams/file-field_type/uploaded'   => 'Anomaly\FileFieldType\Http\Controller\FilesController@uploaded',
-    ];
-
-    /**
      * The singleton bindings.
      *
      * @var array
      */
     protected $singletons = [
         'Anomaly\FileFieldType\FileFieldTypeModifier' => 'Anomaly\FileFieldType\FileFieldTypeModifier'
+    ];
+
+    /**
+     * The addon routes.
+     *
+     * @var array
+     */
+    protected $routes = [
+        'streams/file-field_type/index/{namespace}/{stream}/{field}'  => 'Anomaly\FileFieldType\Http\Controller\FilesController@index',
+        'streams/file-field_type/choose/{namespace}/{stream}/{field}' => 'Anomaly\FileFieldType\Http\Controller\FilesController@choose',
+        'streams/file-field_type/upload/{namespace}/{stream}/{field}' => 'Anomaly\FileFieldType\Http\Controller\FilesController@upload',
+        'streams/file-field_type/handle/{namespace}/{stream}/{field}' => 'Anomaly\FileFieldType\Http\Controller\FilesController@handle',
+        'streams/file-field_type/value/{namespace}/{stream}/{field}'  => 'Anomaly\FileFieldType\Http\Controller\FilesController@value',
     ];
 
 }
