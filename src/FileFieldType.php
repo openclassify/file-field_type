@@ -126,10 +126,11 @@ class FileFieldType extends FieldType
     public function getIndexPath()
     {
         $field     = $this->getField();
+        $entry     = $this->entry->getId();
         $stream    = $this->entry->getStreamSlug();
         $namespace = $this->entry->getStreamNamespace();
 
-        return "streams/file-field_type/index/{$namespace}/{$stream}/{$field}";
+        return "streams/file-field_type/index/{$namespace}/{$stream}/{$field}/$entry";
     }
 
     /**
@@ -140,9 +141,10 @@ class FileFieldType extends FieldType
     public function getUploadPath()
     {
         $field     = $this->getField();
+        $entry     = $this->entry->getId();
         $stream    = $this->entry->getStreamSlug();
         $namespace = $this->entry->getStreamNamespace();
 
-        return "streams/file-field_type/choose/{$namespace}/{$stream}/{$field}";
+        return "streams/file-field_type/choose/{$namespace}/{$stream}/{$field}/$entry";
     }
 }

@@ -10,7 +10,8 @@
         <ul class="nav nav-stacked">
             {% for folder in folders %}
                 <li>
-                    <a href="{{ url_to('streams/file-field_type/upload?folder=' ~ folder.id) }}" class="ajax">
+                    <a href="{{ url_to(field_type.upload_path ~ '?folder=' ~ folder.id) }}"
+                       class="ajax">
                         <strong>{{ folder.name }}</strong>
                         <br>
                         <small>{{ folder.description }}</small>

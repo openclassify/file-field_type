@@ -26,8 +26,6 @@ class FilesController extends AdminController
         $stream    = $streams->findBySlugAndNamespace($stream, $namespace);
         $fieldType = $stream->getFieldType($field);
 
-        dd($fieldType);
-
         return $table->setOption('attributes.id', $field)->render();
     }
 
@@ -35,12 +33,24 @@ class FilesController extends AdminController
      * @param FolderRepositoryInterface $folders
      * @return \Illuminate\View\View
      */
-    public function choose(FolderRepositoryInterface $folders)
-    {
-        return view(
+    public function choose(
+        FolderRepositoryInterface $folders,
+        StreamRepositoryInterface $streams,
+        $namespace,
+        $stream,
+        $field,
+        $entry = null
+    ) {
+        $stream    = $streams->findBySlugAndNamespace($stream, $namespace);
+        $entry     = $stream->getEntryModel()->findOrNew($entry);
+        $fieldType = $entry->getFieldType($field);
+dd($entry);
+        return $this->view->make(
             'anomaly.field_type.file::choose',
             [
-                'folders' => $folders->all()
+                'folders'    => $folders->all(),
+                'stream'     => $stream,
+                'field_type' => $fieldType
             ]
         );
     }
