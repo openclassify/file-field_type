@@ -129,7 +129,7 @@ class FileFieldType extends FieldType
         $stream    = $this->entry->getStreamSlug();
         $namespace = $this->entry->getStreamNamespace();
 
-        return "streams/file-field_type/index/{$namespace}/{$stream}/{$field}";
+        return "streams/file-field_type/index";
     }
 
     /**
