@@ -11,7 +11,7 @@
         data-toggle="modal"
         data-target="#modal"
         href="{{ url(field_type.upload_path) }}"
-        class="btn btn-success btn-xs {{ field_type.value.id ?: 'hidden' }}"
+        class="btn btn-success btn-xs"
         >{{ trans('anomaly.field_type.file::button.upload') }}</a>
 
 <a
@@ -39,8 +39,8 @@
         {{ field_type.disabled ? 'disabled' }}
         {{ field_type.readonly ? 'readonly' }}>
 
-<hr>
-
-{% if field_type.value.id %}
+<div class="value">
+    {% if field_type.value.id %}
         {{ view("anomaly.field_type.file::value", {'file': field_type.value}) }}
-{% endif %}
+    {% endif %}
+</div>

@@ -35,7 +35,7 @@ class FileTableBuilder extends TableBuilder
      */
     protected $filters = [
         'folder',
-        'filename'
+        'name'
     ];
 
     /**
@@ -47,11 +47,11 @@ class FileTableBuilder extends TableBuilder
         'entry.preview' => [
             'heading' => 'anomaly.module.files::field.preview.name'
         ],
-        'filename'      => [
-            'sort_column' => 'filename',
-            'wrapper'     => '<h4 style="margin: 0 0 3px;">{value.filename}<br><small>{value.keywords}</small></h4>',
+        'name'          => [
+            'sort_column' => 'name',
+            'wrapper'     => '<h4 style="margin: 0 0 3px;">{value.name}<br><small>{value.keywords}</small></h4>',
             'value'       => [
-                'filename' => 'entry.filename',
+                'name'     => 'entry.name',
                 'keywords' => 'entry.keywords.labels'
             ]
         ],

@@ -38,13 +38,11 @@ class FilesController extends AdminController
         StreamRepositoryInterface $streams,
         $namespace,
         $stream,
-        $field,
-        $entry = null
+        $field
     ) {
         $stream    = $streams->findBySlugAndNamespace($stream, $namespace);
-        $entry     = $stream->getEntryModel()->findOrNew($entry);
-        $fieldType = $entry->getFieldType($field);
-dd($entry);
+        $fieldType = $stream->getFieldType($field);
+
         return $this->view->make(
             'anomaly.field_type.file::choose',
             [
