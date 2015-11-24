@@ -6,7 +6,6 @@ use Anomaly\FilesModule\File\Contract\FileInterface;
 use Anomaly\FilesModule\Folder\Contract\FolderInterface;
 use Anomaly\FilesModule\Folder\Contract\FolderRepositoryInterface;
 use Anomaly\Streams\Platform\Http\Controller\AdminController;
-use Anomaly\Streams\Platform\Stream\Contract\StreamRepositoryInterface;
 use Illuminate\Database\Eloquent\Builder;
 use League\Flysystem\MountManager;
 
@@ -21,41 +20,39 @@ use League\Flysystem\MountManager;
 class FilesController extends AdminController
 {
 
-    public function index(FileTableBuilder $table, StreamRepositoryInterface $streams, $namespace, $stream, $field)
+    /**
+     * Return an index of existing files.
+     *
+     * @param FileTableBuilder $table
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function index(FileTableBuilder $table)
     {
-        $stream    = $streams->findBySlugAndNamespace($stream, $namespace);
-        $fieldType = $stream->getFieldType($field);
-
-        return $table->setOption('attributes.id', $field)->render();
+        return $table->render();
     }
 
     /**
+     * Return a list of folders to choose from.
+     *
      * @param FolderRepositoryInterface $folders
      * @return \Illuminate\View\View
      */
-    public function choose(
-        FolderRepositoryInterface $folders,
-        StreamRepositoryInterface $streams,
-        $namespace,
-        $stream,
-        $field
-    ) {
-        $stream    = $streams->findBySlugAndNamespace($stream, $namespace);
-        $fieldType = $stream->getFieldType($field);
-
+    public function choose(FolderRepositoryInterface $folders)
+    {
         return $this->view->make(
             'anomaly.field_type.file::choose',
             [
-                'folders'    => $folders->all(),
-                'stream'     => $stream,
-                'field_type' => $fieldType
+                'folders' => $folders->all()
             ]
         );
     }
 
     public function upload(FolderRepositoryInterface $folders)
     {
-        return view('anomaly.field_type.file::upload', ['folder' => $folders->find($this->request->get('folder'))]);
+        return view(
+            'anomaly.field_type.file::upload/index',
+            ['folder' => $folders->find($this->request->get('folder'))]
+        );
     }
 
     /**

@@ -38,9 +38,3 @@
         value="{{ field_type.value.id }}"
         {{ field_type.disabled ? 'disabled' }}
         {{ field_type.readonly ? 'readonly' }}>
-
-<div class="value">
-    {% if field_type.value.id %}
-        {{ view("anomaly.field_type.file::value", {'file': field_type.value}) }}
-    {% endif %}
-</div>
