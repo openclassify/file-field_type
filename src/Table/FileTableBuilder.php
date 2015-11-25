@@ -77,15 +77,4 @@ class FileTableBuilder extends TableBuilder
         'title' => 'anomaly.field_type.file::message.choose_file'
     ];
 
-    /**
-     * The table assets.
-     *
-     * @var array
-     */
-    protected $assets = [
-        'scripts.js' => [
-            'anomaly.field_type.file::js/table.js'
-        ]
-    ];
-
 }

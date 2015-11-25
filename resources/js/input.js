@@ -3,15 +3,18 @@ $(function () {
     // Initialize file pickers
     $('.file-field_type').each(function () {
 
-        $(this).find('input[data-toggle="choose"]').focus(function () {
-            $(this).closest('.input-group').find('[data-toggle="modal"]').trigger('click');
-        });
+        var wrapper = $(this);
+        var field = wrapper.data('field');
 
-        $(this).find('[data-dismiss="file"]').click(function (e) {
+        $('#' + field + '-modal').on('click', '[data-file]', function (e) {
 
             e.preventDefault();
 
-            $(this).closest('.input-group').find('input').val('');
+            wrapper.find('.selected').load('/streams/file-field_type/selected?uploaded=' + $(this).data('file'), function () {
+                $('#' + field + '-modal').modal('hide');
+            });
+
+            $('[name="entry_' + field + '"]').val($(this).data('file'));
         });
     });
 });

@@ -1,13 +1,9 @@
 <?php namespace Anomaly\FileFieldType\Http\Controller;
 
 use Anomaly\FileFieldType\Table\FileTableBuilder;
-use Anomaly\FilesModule\Disk\Contract\DiskInterface;
-use Anomaly\FilesModule\File\Contract\FileInterface;
-use Anomaly\FilesModule\Folder\Contract\FolderInterface;
+use Anomaly\FileFieldType\Table\ValueTableBuilder;
 use Anomaly\FilesModule\Folder\Contract\FolderRepositoryInterface;
 use Anomaly\Streams\Platform\Http\Controller\AdminController;
-use Illuminate\Database\Eloquent\Builder;
-use League\Flysystem\MountManager;
 
 /**
  * Class FilesController
@@ -47,46 +43,8 @@ class FilesController extends AdminController
         );
     }
 
-    public function upload(FolderRepositoryInterface $folders)
+    public function selected(ValueTableBuilder $table)
     {
-        return view(
-            'anomaly.field_type.file::upload/index',
-            ['folder' => $folders->find($this->request->get('folder'))]
-        );
-    }
-
-    /**
-     * @param FolderRepositoryInterface $folders
-     * @param MountManager              $manager
-     * @return string
-     */
-    public function handle(FolderRepositoryInterface $folders, MountManager $manager)
-    {
-        /* @var FolderInterface $folder */
-        $folder = $folders->find($this->request->get('folder'));
-
-        /* @var DiskInterface $disk */
-        $disk = $folder->getDisk();
-
-        $file = $this->request->file('upload');
-
-        $file = $manager->putStream(
-            $disk->getSlug() . '://' . $folder->getSlug() . '/' . $file->getClientOriginalName(),
-            fopen($file->getRealPath(), 'r+')
-        );
-
-        /* @var FileInterface $file */
-
-        return $this->response->json($file->getAttributes());
-    }
-
-    public function uploaded(FileTableBuilder $table)
-    {
-        return $table->setOption('attributes.id', 'test_field')->on(
-            'querying',
-            function (Builder $query) {
-                $query->whereIn('id', explode(',', $this->request->get('uploaded')));
-            }
-        )->render();
+        return $table->setUploaded(explode(',', $this->request->get('uploaded')))->make()->getTableContent();
     }
 }
