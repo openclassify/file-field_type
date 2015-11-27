@@ -16,5 +16,16 @@ $(function () {
 
             $('[name="entry_' + field + '"]').val($(this).data('file'));
         });
+
+        $(wrapper).on('click', '[data-dismiss="file"]', function (e) {
+
+            e.preventDefault();
+
+            $('[name="entry_' + field + '"]').val('');
+
+            wrapper.find('.selected').load('/streams/file-field_type/selected', function () {
+                $('#' + field + '-modal').modal('hide');
+            });
+        });
     });
 });

@@ -43,6 +43,12 @@ class FilesController extends AdminController
         );
     }
 
+    /**
+     * Return a table of selected files.
+     *
+     * @param ValueTableBuilder $table
+     * @return null|string
+     */
     public function selected(ValueTableBuilder $table)
     {
         return $table->setUploaded(explode(',', $this->request->get('uploaded')))->make()->getTableContent();

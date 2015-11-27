@@ -1,5 +1,6 @@
 <?php namespace Anomaly\FileFieldType;
 
+use Anomaly\FileFieldType\Table\ValueTableBuilder;
 use Anomaly\Streams\Platform\Addon\FieldType\FieldType;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -144,5 +145,19 @@ class FileFieldType extends FieldType
         $namespace = $this->entry->getStreamNamespace();
 
         return "streams/file-field_type/choose/{$field}";
+    }
+
+    /**
+     * Value table.
+     *
+     * @return string
+     */
+    public function valueTable()
+    {
+        $table = app(ValueTableBuilder::class);
+
+        $file =$this->getValue();
+
+        return $table->setUploaded([$file ? $file->getId() : null])->make()->getTableContent();
     }
 }

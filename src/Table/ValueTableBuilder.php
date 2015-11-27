@@ -55,7 +55,11 @@ class ValueTableBuilder extends TableBuilder
      *
      * @var array
      */
-    protected $buttons = [];
+    protected $buttons = [
+        'remove' => [
+            'data-dismiss' => 'file'
+        ]
+    ];
 
     /**
      * The table options.
@@ -65,8 +69,9 @@ class ValueTableBuilder extends TableBuilder
     protected $options = [
         'limit'              => 1,
         'container_class'    => '',
+        'show_headers'       => false,
         'sortable_headers'   => false,
-        'no_results_message' => 'module::message.no_uploads'
+        'no_results_message' => 'anomaly.field_type.file::message.no_file_selected'
     ];
 
     /**

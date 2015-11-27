@@ -14,24 +14,6 @@
         class="btn btn-success btn-xs"
         >{{ trans('anomaly.field_type.file::button.upload') }}</a>
 
-<a
-        target="_blank"
-        href="{{ url('admin/files/view/' ~ field_type.value.id) }}"
-        class="btn btn-info btn-xs {{ field_type.value.id ?: 'hidden' }}"
-        >{{ trans('streams::button.view') }}</a>
-
-<a
-        target="_blank"
-        href="{{ url('admin/files/edit/' ~ field_type.value.id) }}"
-        class="btn btn-warning btn-xs {{ field_type.value.id ?: 'hidden' }}"
-        >{{ trans('streams::button.edit') }}</a>
-
-<a
-        href="#"
-        data-dismiss="file"
-        class="btn btn-danger btn-xs {{ field_type.value.id ?: 'hidden' }}"
-        >{{ trans('anomaly.field_type.file::button.remove') }}</a>
-
 <input
         type=""
         name="{{ field_type.input_name }}"
@@ -39,7 +21,9 @@
         {{ field_type.disabled ? 'disabled' }}
         {{ field_type.readonly ? 'readonly' }}>
 
-<div class="selected"></div>
+<div class="selected">
+    {{ field_type.value_table|raw }}
+</div>
 
 <div class="modal remote" id="{{ field_type.field }}-modal">
     <div class="modal-dialog">
