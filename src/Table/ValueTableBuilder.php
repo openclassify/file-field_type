@@ -40,7 +40,7 @@ class ValueTableBuilder extends TableBuilder
         ],
         'name'          => [
             'sort_column' => 'name',
-            'wrapper'     => '<h4>{value.name}<br><small>{value.disk}://{value.folder}/{value.file}</small><small>{value.keywords}</small></h4>',
+            'wrapper'     => '<h4>{value.name}<br><small>{value.disk}://{value.folder}/{value.name}</small><small>{value.keywords}</small></h4>',
             'value'       => [
                 'name'     => 'entry.name',
                 'folder'   => 'entry.folder.slug',
