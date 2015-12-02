@@ -5,13 +5,16 @@ $(function () {
 
         var wrapper = $(this);
         var field = wrapper.data('field');
+        var modal = $('#' + field + '-modal');
 
-        $('#' + field + '-modal').on('click', '[data-file]', function (e) {
+        modal.on('click', '[data-file]', function (e) {
 
             e.preventDefault();
 
+            modal.find('.modal-content').append('<div class="modal-loading"><div class="active loader"></div></div>');
+
             wrapper.find('.selected').load('/streams/file-field_type/selected?uploaded=' + $(this).data('file'), function () {
-                $('#' + field + '-modal').modal('hide');
+                modal.modal('hide');
             });
 
             $('[name="' + field + '"]').val($(this).data('file'));
@@ -24,7 +27,7 @@ $(function () {
             $('[name="' + field + '"]').val('');
 
             wrapper.find('.selected').load('/streams/file-field_type/selected', function () {
-                $('#' + field + '-modal').modal('hide');
+                modal.modal('hide');
             });
         });
     });
