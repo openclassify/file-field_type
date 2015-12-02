@@ -54,35 +54,6 @@ class FileFieldType extends FieldType
     }
 
     /**
-     * Get the rules.
-     *
-     * @return array
-     */
-    public function getRules()
-    {
-        $rules = parent::getRules();
-
-        if ($image = array_get($this->getConfig(), 'image')) {
-            $rules[] = 'image';
-        }
-
-        if ($mimes = array_get($this->getConfig(), 'mimes')) {
-
-            if (in_array('jpg', $mimes) || in_array('jpeg', $mimes)) {
-                $mimes = array_unique(array_merge($mimes, ['jpg', 'jpeg']));
-            }
-
-            $rules[] = 'mimes:' . implode(',', $mimes);
-        }
-
-        if ($max = array_get($this->getConfig(), 'max')) {
-            $rules[] = 'max:' . $max * 1000;
-        }
-
-        return $rules;
-    }
-
-    /**
      * Get the config.
      *
      * @return array
