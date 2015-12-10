@@ -50,4 +50,23 @@ class FileFieldTypeModifier extends FieldTypeModifier
 
         return null;
     }
+
+    /**
+     * Restore the value from storage format.
+     *
+     * @param  $value
+     * @return null|FileInterface
+     */
+    public function restore($value)
+    {
+        if ($value instanceof FileInterface) {
+            return $value;
+        }
+
+        if ($value && $file = $this->files->find($value)) {
+            return $file;
+        }
+
+        return null;
+    }
 }
