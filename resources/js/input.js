@@ -13,7 +13,7 @@ $(function () {
 
             modal.find('.modal-content').append('<div class="modal-loading"><div class="active loader"></div></div>');
 
-            wrapper.find('.selected').load('/streams/file-field_type/selected?uploaded=' + $(this).data('file'), function () {
+            wrapper.find('.selected').load(APPLICATION_URL + '/streams/file-field_type/selected?uploaded=' + $(this).data('file'), function () {
                 modal.modal('hide');
             });
 
@@ -26,7 +26,7 @@ $(function () {
 
             $('[name="' + field + '"]').val('');
 
-            wrapper.find('.selected').load('/streams/file-field_type/selected', function () {
+            wrapper.find('.selected').load(APPLICATION_URL + '/streams/file-field_type/selected', function () {
                 modal.modal('hide');
             });
         });
