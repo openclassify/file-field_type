@@ -1,6 +1,7 @@
 <?php namespace Anomaly\FileFieldType;
 
 use Anomaly\FileFieldType\Table\ValueTableBuilder;
+use Anomaly\FilesModule\File\Contract\FileInterface;
 use Anomaly\Streams\Platform\Addon\FieldType\FieldType;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -127,7 +128,11 @@ class FileFieldType extends FieldType
     {
         $table = app(ValueTableBuilder::class);
 
-        $file =$this->getValue();
+        $file = $this->getValue();
+
+        if (!$file instanceof FileInterface) {
+            $file = null;
+        }
 
         return $table->setUploaded([$file ? $file->getId() : null])->make()->getTableContent();
     }
