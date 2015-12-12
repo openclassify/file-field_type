@@ -34,13 +34,7 @@ class FileTableBuilder extends TableBuilder
      * @var array
      */
     protected $filters = [
-        [
-            'slug'    => 'folder',
-            'filter'  => 'select',
-            'options' => [
-                'test' => 'TEST'
-            ]
-        ],
+        'folder',
         'name'
     ];
 
