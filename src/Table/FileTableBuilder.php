@@ -2,6 +2,7 @@
 
 use Anomaly\FilesModule\File\FileModel;
 use Anomaly\Streams\Platform\Ui\Table\TableBuilder;
+use Illuminate\Database\Eloquent\Builder;
 
 /**
  * Class FileTableBuilder
@@ -13,6 +14,13 @@ use Anomaly\Streams\Platform\Ui\Table\TableBuilder;
  */
 class FileTableBuilder extends TableBuilder
 {
+
+    /**
+     * Allowed folders.
+     *
+     * @var array
+     */
+    protected $folders = [];
 
     /**
      * The ajax flag.
@@ -27,16 +35,6 @@ class FileTableBuilder extends TableBuilder
      * @var string
      */
     protected $model = FileModel::class;
-
-    /**
-     * The table filters.
-     *
-     * @var array
-     */
-    protected $filters = [
-        'folder',
-        'name'
-    ];
 
     /**
      * The table columns.
@@ -78,5 +76,40 @@ class FileTableBuilder extends TableBuilder
     protected $options = [
         'title' => 'anomaly.field_type.file::message.choose_file'
     ];
+
+    /**
+     * Fired when query starts building.
+     *
+     * @param Builder $query
+     */
+    public function onQuerying(Builder $query)
+    {
+        if ($folders = $this->getFolders()) {
+            $query->whereIn('folder_id', array_keys($folders));
+        }
+    }
+
+    /**
+     * Get the folders.
+     *
+     * @return array
+     */
+    public function getFolders()
+    {
+        return $this->folders;
+    }
+
+    /**
+     * Set the folders.
+     *
+     * @param array $folders
+     * @return $this
+     */
+    public function setFolders(array $folders = [])
+    {
+        $this->folders = $folders;
+
+        return $this;
+    }
 
 }

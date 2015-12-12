@@ -36,7 +36,7 @@ class FileFieldType extends FieldType
      * @var array
      */
     protected $config = [
-        'disk' => 'uploads'
+        'folders' => []
     ];
 
     /**
@@ -89,34 +89,6 @@ class FileFieldType extends FieldType
     public function getColumnName()
     {
         return parent::getColumnName() . '_id';
-    }
-
-    /**
-     * Get the index path.
-     *
-     * @return string
-     */
-    public function getIndexPath()
-    {
-        $field     = $this->getField();
-        $stream    = $this->entry->getStreamSlug();
-        $namespace = $this->entry->getStreamNamespace();
-
-        return "streams/file-field_type/index";
-    }
-
-    /**
-     * Get the upload path.
-     *
-     * @return string
-     */
-    public function getUploadPath()
-    {
-        $field     = $this->getField();
-        $stream    = $this->entry->getStreamSlug();
-        $namespace = $this->entry->getStreamNamespace();
-
-        return "streams/file-field_type/choose/{$field}";
     }
 
     /**
