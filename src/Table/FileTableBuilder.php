@@ -111,5 +111,4 @@ class FileTableBuilder extends TableBuilder
 
         return $this;
     }
-
 }
