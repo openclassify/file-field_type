@@ -138,10 +138,10 @@ class FileFieldType extends FieldType
 
         $file = $this->getValue();
 
-        if (!$file instanceof FileInterface) {
-            $file = null;
+        if ($file instanceof FileInterface) {
+            $file = $file->getId();
         }
 
-        return $table->setUploaded([$file ? $file->getId() : null])->make()->getTableContent();
+        return $table->setUploaded([$file])->build()->response()->getTableContent();
     }
 }

@@ -17,7 +17,7 @@
 <input
         type="hidden"
         name="{{ field_type.input_name }}"
-        value="{{ field_type.value.id }}"
+        value="{{ field_type.value.id ?: field_type.value }}"
         {{ field_type.disabled ? 'disabled' }}
         {{ field_type.readonly ? 'readonly' }}>
 
