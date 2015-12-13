@@ -118,7 +118,7 @@ class FileFieldType extends FieldType
     {
         $key = md5(json_encode($this->getConfig()));
 
-        $this->cache->put('file-field_type::' . $key, $this->getConfig(), 10);
+        $this->cache->put('file-field_type::' . $key, $this->getConfig(), 30);
 
         return $key;
     }
