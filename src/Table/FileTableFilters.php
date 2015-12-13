@@ -3,6 +3,7 @@
 use Anomaly\FilesModule\Folder\Command\GetFolder;
 use Anomaly\FilesModule\Folder\Contract\FolderInterface;
 use Anomaly\FilesModule\Folder\Contract\FolderRepositoryInterface;
+use Illuminate\Contracts\Cache\Repository;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Http\Request;
 
@@ -22,15 +23,22 @@ class FileTableFilters
     /**
      * Handle the filters.
      *
-     * @param FileTableBuilder $builder
+     * @param FileTableBuilder          $builder
+     * @param FolderRepositoryInterface $folders
+     * @param Repository                $cache
+     * @param Request                   $request
      */
-    public function handle(FileTableBuilder $builder, FolderRepositoryInterface $folders, Request $request)
-    {
+    public function handle(
+        FileTableBuilder $builder,
+        FolderRepositoryInterface $folders,
+        Repository $cache,
+        Request $request
+    ) {
         $allowed = [];
 
-        $config = explode(',', $request->get('folders'));
+        $config = $cache->get('file-field_type::' . $request->route('key'), []);
 
-        foreach ($config as $identifier) {
+        foreach (array_get($config, 'folders', []) as $identifier) {
 
             /* @var FolderInterface $folder */
             if ($folder = $this->dispatch(new GetFolder($identifier))) {

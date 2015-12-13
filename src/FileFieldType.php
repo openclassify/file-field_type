@@ -3,6 +3,7 @@
 use Anomaly\FileFieldType\Table\ValueTableBuilder;
 use Anomaly\FilesModule\File\Contract\FileInterface;
 use Anomaly\Streams\Platform\Addon\FieldType\FieldType;
+use Illuminate\Contracts\Cache\Repository;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
@@ -38,6 +39,23 @@ class FileFieldType extends FieldType
     protected $config = [
         'folders' => []
     ];
+
+    /**
+     * The cache repository.
+     *
+     * @var Repository
+     */
+    protected $cache;
+
+    /**
+     * Create a new FileFieldType instance.
+     *
+     * @param Repository $cache
+     */
+    public function __construct(Repository $cache)
+    {
+        $this->cache = $cache;
+    }
 
     /**
      * Get the relation.
@@ -89,6 +107,20 @@ class FileFieldType extends FieldType
     public function getColumnName()
     {
         return parent::getColumnName() . '_id';
+    }
+
+    /**
+     * Return the config key.
+     *
+     * @return string
+     */
+    public function configKey()
+    {
+        $key = md5(json_encode($this->getConfig()));
+
+        $this->cache->put('file-field_type::' . $key, $this->getConfig(), 10);
+
+        return $key;
     }
 
     /**

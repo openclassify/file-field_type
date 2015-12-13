@@ -31,7 +31,7 @@ class UploadController extends AdminController
             'anomaly.field_type.file::upload/index',
             [
                 'folder' => $folders->find($folder),
-                'table' => $table->make()->getTable()
+                'table'  => $table->make()->getTable()
             ]
         );
     }
