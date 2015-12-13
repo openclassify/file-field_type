@@ -94,6 +94,10 @@ class FileFieldType extends FieldType
             $max = $server;
         }
 
+        if (!array_get($config, 'folders')) {
+            $config['folders'] = [];
+        }
+
         array_set($config, 'max', $max);
 
         return $config;
