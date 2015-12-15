@@ -35,6 +35,8 @@ $(function () {
     // While file is in transit.
     dropzone.on('sending', function (file) {
 
+        uploader.find('.uploaded .modal-body').html(element.data('uploading') + '...');
+
         // If a preview is not possible - use no-preview.
         var images = ['jpeg', 'jpg', 'png', 'bmp', 'gif'];
         var regex = /(?:\.([^.]+))?$/;
