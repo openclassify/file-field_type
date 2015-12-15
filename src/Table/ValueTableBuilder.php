@@ -30,27 +30,6 @@ class ValueTableBuilder extends TableBuilder
     protected $model = FileModel::class;
 
     /**
-     * The table columns.
-     *
-     * @var array
-     */
-    protected $columns = [
-        'entry.preview' => [
-            'heading' => 'anomaly.module.file::field.preview.name'
-        ],
-        'name'          => [
-            'sort_column' => 'name',
-            'wrapper'     => '<h4>{value.name}<br><small>{value.disk}://{value.folder}/{value.name}</small><small>{value.keywords}</small></h4>',
-            'value'       => [
-                'name'     => 'entry.name',
-                'folder'   => 'entry.folder.slug',
-                'keywords' => 'entry.keywords.labels',
-                'disk'     => 'entry.folder.disk.slug'
-            ]
-        ]
-    ];
-
-    /**
      * The table buttons.
      *
      * @var array
