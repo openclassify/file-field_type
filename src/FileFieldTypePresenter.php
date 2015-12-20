@@ -39,6 +39,10 @@ class FileFieldTypePresenter extends FieldTypePresenter
      */
     public function __get($key)
     {
+        if ($return = parent::__get($key)) {
+            return $return;
+        }
+
         if (!$related = $this->object->getValue()) {
             return null;
         }
@@ -56,6 +60,10 @@ class FileFieldTypePresenter extends FieldTypePresenter
      */
     public function __call($method, $arguments)
     {
+        if ($return = parent::__call($method, $arguments)) {
+            return $return;
+        }
+
         if (!$related = $this->object->getValue()) {
             return null;
         }
