@@ -39,15 +39,17 @@ class FileFieldTypePresenter extends FieldTypePresenter
      */
     public function __get($key)
     {
+        if ($related = $this->object->getValue()) {
+            if ($return = self::__getDecorator()->decorate($related)->{$key}) {
+                return $return;
+            }
+        }
+
         if ($return = parent::__get($key)) {
             return $return;
         }
 
-        if (!$related = $this->object->getValue()) {
-            return null;
-        }
-
-        return self::$__decorator->decorate($related)->{$key};
+        return null;
     }
 
     /**
@@ -60,14 +62,16 @@ class FileFieldTypePresenter extends FieldTypePresenter
      */
     public function __call($method, $arguments)
     {
+        if ($related = $this->object->getValue()) {
+            if ($return = call_user_func_array([self::__getDecorator()->decorate($related), $method], $arguments)) {
+                return $return;
+            }
+        }
+
         if ($return = parent::__call($method, $arguments)) {
             return $return;
         }
 
-        if (!$related = $this->object->getValue()) {
-            return null;
-        }
-
-        return call_user_func_array([self::$__decorator->decorate($related), $method], $arguments);
+        return null;
     }
 }
