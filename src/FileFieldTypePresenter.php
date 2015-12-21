@@ -39,14 +39,6 @@ class FileFieldTypePresenter extends FieldTypePresenter
      */
     public function __get($key)
     {
-<<<<<<< Updated upstream
-        try {
-            return parent::__get($key);
-        } catch (\Exception $e) {
-
-            if (!$related = $this->object->getValue()) {
-                return null;
-=======
         if ($return = parent::__get($key)) {
             return $return;
         }
@@ -54,15 +46,10 @@ class FileFieldTypePresenter extends FieldTypePresenter
         if ($related = $this->object->getValue()) {
             if ($return = self::__getDecorator()->decorate($related)->{$key}) {
                 return $return;
->>>>>>> Stashed changes
             }
-
-<<<<<<< Updated upstream
-            return $related->{$key};
         }
-=======
+
         return null;
->>>>>>> Stashed changes
     }
 
     /**
@@ -75,14 +62,6 @@ class FileFieldTypePresenter extends FieldTypePresenter
      */
     public function __call($method, $arguments)
     {
-<<<<<<< Updated upstream
-        try {
-            return parent::__call($method, $arguments);
-        } catch (\Exception $e) {
-
-            if (!$related = $this->object->getValue()) {
-                return null;
-=======
         if ($return = parent::__call($method, $arguments)) {
             return $return;
         }
@@ -90,14 +69,9 @@ class FileFieldTypePresenter extends FieldTypePresenter
         if ($related = $this->object->getValue()) {
             if ($return = call_user_func_array([self::__getDecorator()->decorate($related), $method], $arguments)) {
                 return $return;
->>>>>>> Stashed changes
             }
-
-<<<<<<< Updated upstream
-            return call_user_func_array([$related, $method], $arguments);
         }
-=======
+
         return null;
->>>>>>> Stashed changes
     }
 }
