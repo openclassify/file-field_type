@@ -62,13 +62,15 @@ class FileFieldTypePresenter extends FieldTypePresenter
      */
     public function __call($method, $arguments)
     {
-        if ($return = parent::__call($method, $arguments)) {
-            return $return;
-        }
-
-        if ($related = $this->object->getValue()) {
-            if ($return = call_user_func_array([self::__getDecorator()->decorate($related), $method], $arguments)) {
+        try {
+            if ($return = parent::__call($method, $arguments)) {
                 return $return;
+            }
+        } catch (\Exception $e) {
+            if ($related = $this->object->getValue()) {
+                if ($return = call_user_func_array([self::__getDecorator()->decorate($related), $method], $arguments)) {
+                    return $return;
+                }
             }
         }
 
