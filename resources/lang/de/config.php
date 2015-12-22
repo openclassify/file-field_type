@@ -2,8 +2,7 @@
 
 return [
     'disk'  => [
-        'label'        => 'Upload Disk',
-        // @todo: decide if we want to translate the expression "disk" or leave it as it is
+        'label'        => 'Upload Disk', // @todo: decide if we want to translate the expression "disk" or leave it as it is
         'instructions' => 'Wählen Sie eine &laquo;Disk&raquo; in welche die Date hochgeladen wird.'
     ],
     'path'  => [
