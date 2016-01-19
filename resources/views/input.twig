@@ -10,6 +10,11 @@
 <a
         data-toggle="modal"
         data-target="#{{ field_type.field_name }}-modal"
+        {% if field_type.config.folders|length == 1 %}
+            href="{{ url('streams/file-field_type/upload/' ~ field_type.config.folders|first) }}"
+        {% else %}
+            href="{{ url('streams/file-field_type/choose/' ~ field_type.config_key) }}"
+        {% endif %}
         href="{{ url('streams/file-field_type/choose/' ~ field_type.config_key) }}"
         class="btn btn-success btn-xs"
 >{{ trans('anomaly.field_type.file::button.upload') }}</a>
