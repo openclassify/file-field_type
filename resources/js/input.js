@@ -1,10 +1,11 @@
 $(function () {
 
     // Initialize file pickers
-    $('.file-field_type').each(function () {
+    $('[data-provides="anomaly.field_type.file"]').each(function () {
 
-        var wrapper = $(this);
-        var field = wrapper.data('field');
+        var input = $(this);
+        var field = input.data('field_name');
+        var wrapper = input.closest('.form-group');
         var modal = $('#' + field + '-modal');
 
         modal.on('click', '[data-file]', function (e) {
@@ -17,14 +18,14 @@ $(function () {
                 modal.modal('hide');
             });
 
-            $('[name="' + field + '"]').val($(this).data('file'));
+            input.val($(this).data('file'));
         });
 
         $(wrapper).on('click', '[data-dismiss="file"]', function (e) {
 
             e.preventDefault();
 
-            $('[name="' + field + '"]').val('');
+            input.val('');
 
             wrapper.find('.selected').load(APPLICATION_URL + '/streams/file-field_type/selected', function () {
                 modal.modal('hide');
