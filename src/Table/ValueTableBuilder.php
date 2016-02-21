@@ -68,6 +68,7 @@ class ValueTableBuilder extends TableBuilder
      * @var array
      */
     protected $buttons = [
+        'edit',
         'remove' => [
             'data-dismiss' => 'file'
         ]

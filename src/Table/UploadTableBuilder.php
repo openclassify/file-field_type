@@ -82,6 +82,7 @@ class UploadTableBuilder extends TableBuilder
      * @var array
      */
     protected $buttons = [
+        'edit',
         'select' => [
             'data-file' => 'entry.id'
         ]
