@@ -81,8 +81,6 @@ class ValueTableBuilder extends TableBuilder
      */
     protected $options = [
         'limit'              => 1,
-        'panel_class'        => '',
-        'container_class'    => '',
         'show_headers'       => false,
         'sortable_headers'   => false,
         'table_view'         => 'anomaly.field_type.file::table',
