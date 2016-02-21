@@ -60,7 +60,13 @@ class FileTableFilters
                         'options' => $allowed,
                         'enabled' => (count($allowed) !== 1)
                     ],
-                    'name'
+                    'search' => [
+                        'columns' => [
+                            'name',
+                            'keywords',
+                            'mime_type'
+                        ]
+                    ]
                 ]
             );
     }
