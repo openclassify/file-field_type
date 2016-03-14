@@ -82,7 +82,6 @@ class UploadTableBuilder extends TableBuilder
      * @var array
      */
     protected $buttons = [
-        'edit',
         'select' => [
             'data-file' => 'entry.id'
         ]
@@ -96,6 +95,7 @@ class UploadTableBuilder extends TableBuilder
     protected $options = [
         'limit'              => 999,
         'container_class'    => '',
+        'enable_views'       => false,
         'sortable_headers'   => false,
         'no_results_message' => 'anomaly.field_type.file::message.no_uploads'
     ];
