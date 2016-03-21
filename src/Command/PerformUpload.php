@@ -85,6 +85,7 @@ class PerformUpload implements SelfHandling
         $path = $parser->parse($path, $this->fieldType);
         $path = (!empty($path) ? $path . '/' : null) . $file->getClientOriginalName();
 
-        return $manager->putStream($disk->path($path), fopen($file->getRealPath(), 'r+'));
+        //return $manager->putStream($disk->path($path), fopen($file->getRealPath(), 'r+'));
+         return $manager->putStream($disk->getSlug() . '://' . $path, fopen($file->getRealPath(), 'r+'));
     }
 }
