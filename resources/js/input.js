@@ -27,9 +27,7 @@ $(function () {
 
             input.val('');
 
-            wrapper.find('.selected').load('/streams/file-field_type/selected', function () {
-                modal.modal('hide');
-            });
+            wrapper.find('.selected').load('/streams/file-field_type/selected');
         });
     });
 });
