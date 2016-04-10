@@ -14,9 +14,7 @@ $(function () {
 
             modal.find('.modal-content').append('<div class="modal-loading"><div class="active loader"></div></div>');
 
-            wrapper.find('.selected').load('/streams/file-field_type/selected?uploaded=' + $(this).data('file'), function () {
-                modal.modal('hide');
-            });
+            wrapper.find('.selected').load('/streams/file-field_type/selected?uploaded=' + $(this).data('file'));
 
             input.val($(this).data('file'));
         });
