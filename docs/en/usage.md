@@ -11,13 +11,11 @@
 
 You can set the file field type value with a file's ID.
 
-{{ code('php', '$entry->example = 10') }}
+    $entry->example = 10;
 
 You can also set the value with an instance of a file.
 
-{% code php %}
-$entry->example = $file;
-{% endcode %}
+    $entry->example = $file;
 
 <hr>
 
@@ -26,9 +24,7 @@ $entry->example = $file;
 
 The file field type always returns `null` or an instance of the selected file.
 
-{% code php %}
-$entry->example->getName(); // example.jpg
-{% endcode %}
+    $entry->example->getName(); // example.jpg
 
 <hr>
 
@@ -37,16 +33,10 @@ $entry->example->getName(); // example.jpg
 
 When accessing the value from a decorated entry, like one in a view, the file's presenter is returned instead.
 
-{% code twig %}
-{% verbatim %}{{ entry.example.path() }} {# "/app/default/example.jpg" #}{% endverbatim %}
-{% endcode %}
+    {% verbatim %}{{ entry.example.path() }} {# "/app/default/example.jpg" #}{% endverbatim %}
 
 **Remember:** You can access presenter and object methods in valuated strings like table columns too.
 
-<pre>
-{% code php %}
-protected $columns = [
-    "entry.file.extension"
-];
-{% endcode %}
-</pre>
+    protected $columns = [
+        "entry.file.extension"
+    ];
