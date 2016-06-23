@@ -140,6 +140,6 @@ class FileFieldType extends FieldType
             $file = $file->getId();
         }
 
-        return $table->setUploaded([$file])->build()->response()->getTableContent();
+        return $table->setUploaded([$file])->build()->load()->getTableContent();
     }
 }
