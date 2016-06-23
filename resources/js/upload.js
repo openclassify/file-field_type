@@ -15,17 +15,17 @@ $(function () {
     var dropzone = new Dropzone('.dropzone',
         {
             paramName: 'upload',
-            url: '/streams/file-field_type/handle',
+            url: REQUEST_ROOT_PATH + '/streams/file-field_type/handle',
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
             sending: function (file, xhr, formData) {
                 formData.append('folder', element.data('folder'));
             },
-            accept: function(file, done) {
-                $.getJSON('/admin/files/exists/' + element.data('folder') + '/' + file.name, function(data) {
-                    if(data.exists) {
-                        if(!confirm(file.name + " " + element.data('overwrite'))) {
+            accept: function (file, done) {
+                $.getJSON(REQUEST_ROOT_PATH + '/admin/files/exists/' + element.data('folder') + '/' + file.name, function (data) {
+                    if (data.exists) {
+                        if (!confirm(file.name + " " + element.data('overwrite'))) {
                             dropzone.removeFile(file);
                             return;
                         }
@@ -79,6 +79,6 @@ $(function () {
 
         uploader.find('.uploaded .modal-body').html(element.data('loading') + '...');
 
-        uploader.find('.uploaded').load('/streams/file-field_type/recent?uploaded=' + uploaded.join(','));
+        uploader.find('.uploaded').load(REQUEST_ROOT_PATH + '/streams/file-field_type/recent?uploaded=' + uploaded.join(','));
     });
 });
