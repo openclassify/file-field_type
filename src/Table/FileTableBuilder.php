@@ -10,7 +10,6 @@ use Illuminate\Database\Eloquent\Builder;
  * @link          http://pyrocms.com/
  * @author        PyroCMS, Inc. <support@pyrocms.com>
  * @author        Ryan Thompson <ryan@pyrocms.com>
- * @package       Anomaly\FileFieldType\Table
  */
 class FileTableBuilder extends TableBuilder
 {
@@ -43,7 +42,7 @@ class FileTableBuilder extends TableBuilder
      */
     protected $columns = [
         'entry.preview' => [
-            'heading' => 'anomaly.module.files::field.preview.name'
+            'heading' => 'anomaly.module.files::field.preview.name',
         ],
         'name'          => [
             'sort_column' => 'name',
@@ -58,15 +57,15 @@ class FileTableBuilder extends TableBuilder
                 'folder'   => 'entry.folder.slug',
                 'keywords' => 'entry.keywords.labels',
                 'disk'     => 'entry.folder.disk.slug',
-                'size'     => 'entry.size_label'
-            ]
+                'size'     => 'entry.size_label',
+            ],
         ],
         'size'          => [
             'sort_column' => 'size',
-            'value'       => 'entry.readable_size'
+            'value'       => 'entry.readable_size',
         ],
         'mime_type',
-        'folder'
+        'folder',
     ];
 
     /**
@@ -76,8 +75,8 @@ class FileTableBuilder extends TableBuilder
      */
     protected $buttons = [
         'select' => [
-            'data-file' => 'entry.id'
-        ]
+            'data-file' => 'entry.id',
+        ],
     ];
 
     /**
@@ -87,7 +86,7 @@ class FileTableBuilder extends TableBuilder
      */
     protected $options = [
         'enable_views' => false,
-        'title'        => 'anomaly.field_type.file::message.choose_file'
+        'title'        => 'anomaly.field_type.file::message.choose_file',
     ];
 
     /**
@@ -115,7 +114,7 @@ class FileTableBuilder extends TableBuilder
     /**
      * Set the folders.
      *
-     * @param array $folders
+     * @param  array $folders
      * @return $this
      */
     public function setFolders(array $folders = [])

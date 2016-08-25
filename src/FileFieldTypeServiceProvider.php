@@ -8,7 +8,6 @@ use Anomaly\Streams\Platform\Addon\AddonServiceProvider;
  * @link          http://pyrocms.com/
  * @author        PyroCMS, Inc. <support@pyrocms.com>
  * @author        Ryan Thompson <ryan@pyrocms.com>
- * @package       Anomaly\FileFieldType
  */
 class FileFieldTypeServiceProvider extends AddonServiceProvider
 {
@@ -19,7 +18,7 @@ class FileFieldTypeServiceProvider extends AddonServiceProvider
      * @var array
      */
     protected $singletons = [
-        'Anomaly\FileFieldType\FileFieldTypeModifier' => 'Anomaly\FileFieldType\FileFieldTypeModifier'
+        'Anomaly\FileFieldType\FileFieldTypeModifier' => 'Anomaly\FileFieldType\FileFieldTypeModifier',
     ];
 
     /**

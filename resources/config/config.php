@@ -8,7 +8,7 @@ return [
         'config' => [
             'options' => function (FolderRepositoryInterface $folders) {
                 return $folders->all()->lists('name', 'id')->all();
-            }
-        ]
-    ]
+            },
+        ],
+    ],
 ];

@@ -8,5 +8,5 @@ return [
     'no_uploads'       => 'No files uploaded.',
     'overwrite'        => 'has already been uploaded. Would you like to overwrite it?',
     'uploading'        => 'Uploading',
-    'loading'          => 'Loading'
+    'loading'          => 'Loading',
 ];

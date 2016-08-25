@@ -14,7 +14,6 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
  * @link          http://pyrocms.com/
  * @author        PyroCMS, Inc. <support@pyrocms.com>
  * @author        Ryan Thompson <ryan@pyrocms.com>
- * @package       Anomaly\FileFieldType\Http\Controller
  */
 class UploadController extends AdminController
 {
@@ -24,8 +23,8 @@ class UploadController extends AdminController
     /**
      * Return the uploader.
      *
-     * @param UploadTableBuilder        $table
-     * @param                           $folder
+     * @param  UploadTableBuilder    $table
+     * @param                        $folder
      * @return \Illuminate\View\View
      */
     public function index(UploadTableBuilder $table, $folder)
@@ -34,7 +33,7 @@ class UploadController extends AdminController
             'anomaly.field_type.file::upload/index',
             [
                 'folder' => $this->dispatch(new GetFolder($folder)),
-                'table'  => $table->make()->getTable()
+                'table'  => $table->make()->getTable(),
             ]
         );
     }
@@ -42,8 +41,8 @@ class UploadController extends AdminController
     /**
      * Upload a file.
      *
-     * @param FileUploader              $uploader
-     * @param FolderRepositoryInterface $folders
+     * @param  FileUploader                  $uploader
+     * @param  FolderRepositoryInterface     $folders
      * @return \Illuminate\Http\JsonResponse
      */
     public function upload(FileUploader $uploader, FolderRepositoryInterface $folders)
@@ -58,7 +57,7 @@ class UploadController extends AdminController
     /**
      * Return the recently uploaded files.
      *
-     * @param FileTableBuilder $table
+     * @param  FileTableBuilder                           $table
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function recent(UploadTableBuilder $table)

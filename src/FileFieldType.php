@@ -12,7 +12,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @link          http://pyrocms.com/
  * @author        PyroCMS, Inc. <support@pyrocms.com>
  * @author        Ryan Thompson <ryan@pyrocms.com>
- * @package       Anomaly\FileFieldType
  */
 class FileFieldType extends FieldType
 {
@@ -37,7 +36,7 @@ class FileFieldType extends FieldType
      * @var array
      */
     protected $config = [
-        'folders' => []
+        'folders' => [],
     ];
 
     /**

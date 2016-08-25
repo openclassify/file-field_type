@@ -5,7 +5,6 @@ use Anomaly\FileFieldType\FileFieldTypeParser;
 use Anomaly\FilesModule\Disk\Contract\DiskRepositoryInterface;
 use Anomaly\FilesModule\File\Contract\FileInterface;
 use Anomaly\FilesModule\File\Contract\FileRepositoryInterface;
-use Illuminate\Contracts\Bus\SelfHandling;
 use Illuminate\Http\Request;
 use League\Flysystem\MountManager;
 
@@ -15,9 +14,8 @@ use League\Flysystem\MountManager;
  * @link          http://pyrocms.com/
  * @author        PyroCMS, Inc. <support@pyrocms.com>
  * @author        Ryan Thompson <ryan@pyrocms.com>
- * @package       Anomaly\FileFieldType\Command
  */
-class PerformUpload implements SelfHandling
+class PerformUpload
 {
 
     /**
@@ -60,7 +58,7 @@ class PerformUpload implements SelfHandling
         $file  = $request->file($this->fieldType->getInputName());
         $value = $request->get($this->fieldType->getInputName() . '_id');
 
-        /**
+        /*
          * Make sure we have at least
          * some kind of input.
          */

@@ -1,7 +1,6 @@
 <?php namespace Anomaly\FileFieldType\Command;
 
 use Anomaly\FileFieldType\FileFieldType;
-use Illuminate\Contracts\Bus\SelfHandling;
 use Illuminate\Http\Request;
 
 /**
@@ -10,9 +9,8 @@ use Illuminate\Http\Request;
  * @link          http://pyrocms.com/
  * @author        PyroCMS, Inc. <support@pyrocms.com>
  * @author        Ryan Thompson <ryan@pyrocms.com>
- * @package       Anomaly\FileFieldType\Command
  */
-class GetUploadFile implements SelfHandling
+class GetUploadFile
 {
 
     /**
@@ -35,7 +33,7 @@ class GetUploadFile implements SelfHandling
     /**
      * Handle the command.
      *
-     * @param Request $request
+     * @param  Request                                                   $request
      * @return array|\Symfony\Component\HttpFoundation\File\UploadedFile
      */
     public function handle(Request $request)
