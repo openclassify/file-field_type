@@ -7,16 +7,8 @@ use Illuminate\Contracts\Cache\Repository;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Http\Request;
 
-/**
- * Class FileTableFilters
- *
- * @link          http://pyrocms.com/
- * @author        PyroCMS, Inc. <support@pyrocms.com>
- * @author        Ryan Thompson <ryan@pyrocms.com>
- */
 class FileTableFilters
 {
-
     use DispatchesJobs;
 
     /**
@@ -46,7 +38,7 @@ class FileTableFilters
         }
 
         if (!$allowed) {
-            $allowed = $folders->all()->lists('name', 'id')->all();
+            $allowed = $folders->all()->pluck('name', 'id')->all();
         }
 
         $builder

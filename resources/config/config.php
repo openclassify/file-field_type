@@ -7,7 +7,7 @@ return [
         'type'   => 'anomaly.field_type.checkboxes',
         'config' => [
             'options' => function (FolderRepositoryInterface $folders) {
-                return $folders->all()->lists('name', 'id')->all();
+                return $folders->all()->pluck('name', 'id')->all();
             },
         ],
     ],
