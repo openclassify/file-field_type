@@ -10,8 +10,5 @@ return [
                 return $folders->all()->pluck('name', 'id')->all();
             },
         ],
-        'rules' => [
-            'nullable',
-        ],
     ],
 ];
