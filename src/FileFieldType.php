@@ -85,11 +85,9 @@ class FileFieldType extends FieldType
 
         $server = $file > $post ? $post : $file;
 
-        if (!$max = array_get($config, 'max')) {
-            $max = $server;
-        }
+        $max = array_get($config, 'max');
 
-        if ($max > $server) {
+        if ($max && $max > $server) {
             $max = $server;
         }
 

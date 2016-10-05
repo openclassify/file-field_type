@@ -11,4 +11,10 @@ return [
             },
         ],
     ],
+    'max'     => [
+        'type'   => 'anomaly.field_type.decimal',
+        'config' => [
+            'decimals' => 1,
+        ],
+    ],
 ];

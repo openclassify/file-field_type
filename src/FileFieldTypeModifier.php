@@ -2,6 +2,7 @@
 
 use Anomaly\FilesModule\File\Contract\FileInterface;
 use Anomaly\FilesModule\File\Contract\FileRepositoryInterface;
+use Anomaly\FilesModule\File\FilePresenter;
 use Anomaly\Streams\Platform\Addon\FieldType\FieldTypeModifier;
 
 /**
@@ -39,6 +40,10 @@ class FileFieldTypeModifier extends FieldTypeModifier
      */
     public function modify($value)
     {
+        if ($value instanceof FilePresenter) {
+            $value = $value->getObject();
+        }
+
         if ($value instanceof FileInterface) {
             return $value->getId();
         }
