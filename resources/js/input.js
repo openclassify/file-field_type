@@ -12,7 +12,7 @@ $(function () {
 
             e.preventDefault();
 
-            modal.find('.modal-content').append('<div class="modal-loading"><div class="active loader"></div></div>');
+            modal.trigger('loading');
 
             wrapper.find('.selected').load(REQUEST_ROOT_PATH + '/streams/file-field_type/selected?uploaded=' + $(this).data('file'), function () {
                 modal.modal('hide');
