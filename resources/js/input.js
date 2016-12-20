@@ -1,4 +1,4 @@
-$(function () {
+$(document).on('ajaxComplete ready', function () {
 
     // Initialize file pickers
     $('[data-provides="anomaly.field_type.file"]').each(function () {
