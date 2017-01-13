@@ -1,7 +1,9 @@
 $(document).on('ajaxComplete ready', function () {
 
     // Initialize file pickers
-    $('[data-provides="anomaly.field_type.file"]').each(function () {
+    $('[data-provides="anomaly.field_type.file"]:not([data-initialized])').each(function () {
+
+        $(this).attr('data-initialized', '');
 
         var input = $(this);
         var field = input.data('field_name');
