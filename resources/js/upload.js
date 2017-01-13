@@ -12,12 +12,15 @@ $(function () {
 
     template.remove();
 
-    var dropzone = new Dropzone('.dropzone',
+    var dropzone = new Dropzone('.dropzone:not(data-initialized)',
         {
             paramName: 'upload',
             url: REQUEST_ROOT_PATH + '/streams/file-field_type/handle',
             headers: {
                 'X-CSRF-TOKEN': CSRF_TOKEN
+            },
+            init: function () {
+                $('.dropzone').attr('data-initialized', '');
             },
             sending: function (file, xhr, formData) {
                 formData.append('folder', element.data('folder'));
