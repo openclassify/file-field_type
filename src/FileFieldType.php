@@ -36,6 +36,7 @@ class FileFieldType extends FieldType
      * @var array
      */
     protected $config = [
+        'mode'    => 'default',
         'folders' => [],
     ];
 
