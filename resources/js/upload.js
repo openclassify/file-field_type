@@ -77,7 +77,7 @@ $(function () {
         file.previewElement.querySelector("[data-dz-uploadprogress]").setAttribute('value', 100);
         file.previewElement.querySelector('[data-dz-uploadprogress]').setAttribute('class', 'progress progress-danger');
 
-        alert(message.error);
+        alert(message.error ? message.error : message);
     });
 
     // When all files are processed.
