@@ -18,7 +18,7 @@ class FileFieldTypeServiceProvider extends AddonServiceProvider
      * @var array
      */
     protected $singletons = [
-        'Anomaly\FileFieldType\FileFieldTypeModifier' => 'Anomaly\FileFieldType\FileFieldTypeModifier',
+        FileFieldTypeModifier::class => FileFieldTypeModifier::class,
     ];
 
     /**
