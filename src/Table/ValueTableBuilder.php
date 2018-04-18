@@ -68,7 +68,8 @@ class ValueTableBuilder extends TableBuilder
      */
     protected $buttons = [
         'edit'   => [
-            'href' => 'admin/files/edit/{entry.id}',
+            'href'       => 'admin/files/edit/{entry.id}',
+            'permission' => 'anomaly.module.files::files.write',
         ],
         'view'   => [
             'target' => '_blank',
