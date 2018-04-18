@@ -70,6 +70,10 @@ class ValueTableBuilder extends TableBuilder
         'edit'   => [
             'href' => 'admin/files/edit/{entry.id}',
         ],
+        'view'   => [
+            'target' => '_blank',
+            'href'   => 'admin/files/view/{entry.id}',
+        ],
         'remove' => [
             'data-dismiss' => 'file',
         ],
