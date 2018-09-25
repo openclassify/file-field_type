@@ -1,10 +1,10 @@
 <?php
 
 return [
-    'folders' => [
-        'name'         => 'Folders',
-        'instructions' => 'Specify which folders are available for this field. Leave blank to display all folders.',
-        'warning'      => 'Existing folder permissions take precedence over selected folders.',
+    'folders'      => [
+        'name'         => 'Ordner',
+        'instructions' => 'Geben Sie an welche Ordner für dieses Feld verfügbar sind. Leer lassen um alle Ordner anzuzeigen.',
+        'warning'      => 'Bestehende Ordnerberechtigungen haben Vorrang gegenüber den ausgewählten Ordnern.',
     ],
     'max'     => [
         'name'         => 'Maximale Upload Grösse',
