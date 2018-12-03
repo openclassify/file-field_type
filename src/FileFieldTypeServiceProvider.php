@@ -18,7 +18,7 @@ class FileFieldTypeServiceProvider extends AddonServiceProvider
      * @var array
      */
     protected $singletons = [
-        'Anomaly\FileFieldType\FileFieldTypeModifier' => 'Anomaly\FileFieldType\FileFieldTypeModifier',
+        FileFieldTypeModifier::class => FileFieldTypeModifier::class,
     ];
 
     /**
@@ -30,6 +30,7 @@ class FileFieldTypeServiceProvider extends AddonServiceProvider
         'streams/file-field_type/index/{key}'     => 'Anomaly\FileFieldType\Http\Controller\FilesController@index',
         'streams/file-field_type/choose/{key}'    => 'Anomaly\FileFieldType\Http\Controller\FilesController@choose',
         'streams/file-field_type/selected'        => 'Anomaly\FileFieldType\Http\Controller\FilesController@selected',
+        'streams/file-field_type/exists/{folder}' => 'Anomaly\FileFieldType\Http\Controller\FilesController@exists',
         'streams/file-field_type/upload/{folder}' => 'Anomaly\FileFieldType\Http\Controller\UploadController@index',
         'streams/file-field_type/handle'          => 'Anomaly\FileFieldType\Http\Controller\UploadController@upload',
         'streams/file-field_type/recent'          => 'Anomaly\FileFieldType\Http\Controller\UploadController@recent',

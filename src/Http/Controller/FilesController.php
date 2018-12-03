@@ -2,6 +2,7 @@
 
 use Anomaly\FileFieldType\Table\FileTableBuilder;
 use Anomaly\FileFieldType\Table\ValueTableBuilder;
+use Anomaly\FilesModule\File\Contract\FileRepositoryInterface;
 use Anomaly\FilesModule\Folder\Command\GetFolder;
 use Anomaly\FilesModule\Folder\Contract\FolderInterface;
 use Anomaly\FilesModule\Folder\Contract\FolderRepositoryInterface;
@@ -73,5 +74,27 @@ class FilesController extends AdminController
     public function selected(ValueTableBuilder $table)
     {
         return $table->setUploaded(explode(',', $this->request->get('uploaded')))->make()->getTableContent();
+    }
+
+    /**
+     * Check if a file exists.
+     *
+     * @param FileRepositoryInterface $files
+     * @param                         $folder
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function exists(FileRepositoryInterface $files, $folder)
+    {
+        $success = true;
+        $exists  = false;
+
+        /* @var FolderInterface|null $folder */
+        $folder = $this->dispatch(new GetFolder($folder));
+
+        if ($folder && $file = $files->findByNameAndFolder($this->request->get('file'), $folder)) {
+            $exists = true;
+        }
+
+        return $this->response->json(compact('success', 'exists'));
     }
 }
