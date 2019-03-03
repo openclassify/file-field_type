@@ -1,12 +1,11 @@
 <?php
 
-use Anomaly\FileFieldType\Support\Config\FoldersHandler;
 
 return [
     'folders' => [
         'type'   => 'anomaly.field_type.checkboxes',
         'config' => [
-            'handler' => FoldersHandler::class,
+            'handler' => \Anomaly\FileFieldType\Support\Config\FoldersHandler::class,
         ],
     ],
     'max'     => [
