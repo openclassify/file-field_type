@@ -8,7 +8,7 @@ $(document).on('ajaxComplete ready', function () {
         var input = $(this);
         var field = input.data('field_name');
         var wrapper = input.closest('.form-group');
-        var modal = wrapper.find('#' + input.data('modal-name'));
+        var modal = $('#' + field + '-modal');
 
         modal.on('click', '[data-file]', function (e) {
 
