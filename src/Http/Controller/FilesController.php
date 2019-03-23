@@ -13,9 +13,9 @@ use Illuminate\Http\Request;
 /**
  * Class FilesController
  *
- * @link          http://pyrocms.com/
- * @author        PyroCMS, Inc. <support@pyrocms.com>
- * @author        Ryan Thompson <ryan@pyrocms.com>
+ * @link   http://pyrocms.com/
+ * @author PyroCMS, Inc. <support@pyrocms.com>
+ * @author Ryan Thompson <ryan@pyrocms.com>
  */
 class FilesController extends AdminController
 {
@@ -28,22 +28,20 @@ class FilesController extends AdminController
      */
     public function index(FileTableBuilder $table)
     {
-        return $table->render();
+        return $table->setConfig(cache('file-field_type::' . request()->route('key'), []))->render();
     }
 
     /**
      * Return a list of folders to choose from.
      *
      * @param  FolderRepositoryInterface $folders
-     * @param  Repository                $cache
-     * @param  Request                   $request
      * @return \Illuminate\View\View
      */
-    public function choose(FolderRepositoryInterface $folders, Repository $cache, Request $request)
+    public function choose(FolderRepositoryInterface $folders)
     {
         $allowed = [];
 
-        $config = $cache->get('file-field_type::' . $request->route('key'), []);
+        $config = cache('file-field_type::' . ($key = request()->route('key')), []);
 
         foreach (array_get($config, 'folders', []) as $identifier) {
 
@@ -60,6 +58,7 @@ class FilesController extends AdminController
         return $this->view->make(
             'anomaly.field_type.file::choose',
             [
+                'key'     => $key,
                 'folders' => $allowed,
             ]
         );

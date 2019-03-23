@@ -4,12 +4,12 @@
          data-folder="{{ folder.id }}"
          data-icon="{{ icon('upload')|escape }}"
          data-max-size="{{ max_upload_size() }}"
+         data-allowed="{{ allowed ? '.' ~ allowed|join(',.') }}"
          data-message="{{ trans('anomaly.field_type.file::message.upload') }}"
          data-loading="{{ trans('anomaly.field_type.file::message.loading') }}"
          data-uploading="{{ trans('anomaly.field_type.file::message.uploading') }}"
          data-overwrite="{{ trans('anomaly.field_type.file::message.overwrite') }}"
-         data-max-parallel="{{ setting_value('anomaly.module.files::max_parallel_uploads', 3) }}"
-         data-allowed="{{ folder.allowed_types.value ? '.' ~ folder.allowed_types.value|join(',.') }}"></div>
+         data-max-parallel="{{ setting_value('anomaly.module.files::max_parallel_uploads', 3) }}"></div>
 
     <div class="uploads"></div>
 

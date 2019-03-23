@@ -25,4 +25,7 @@ return [
             ],
         ],
     ],
+    'allowed_types' => [
+        'type' => 'anomaly.field_type.tags',
+    ],
 ];

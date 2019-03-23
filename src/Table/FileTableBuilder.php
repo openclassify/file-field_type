@@ -7,19 +7,19 @@ use Illuminate\Database\Eloquent\Builder;
 /**
  * Class FileTableBuilder
  *
- * @link          http://pyrocms.com/
- * @author        PyroCMS, Inc. <support@pyrocms.com>
- * @author        Ryan Thompson <ryan@pyrocms.com>
+ * @link   http://pyrocms.com/
+ * @author PyroCMS, Inc. <support@pyrocms.com>
+ * @author Ryan Thompson <ryan@pyrocms.com>
  */
 class FileTableBuilder extends TableBuilder
 {
 
     /**
-     * Allowed folders.
+     * Field configuration.
      *
      * @var array
      */
-    protected $folders = [];
+    protected $config = [];
 
     /**
      * The ajax flag.
@@ -96,30 +96,34 @@ class FileTableBuilder extends TableBuilder
      */
     public function onQuerying(Builder $query)
     {
-        if ($folders = $this->getFolders()) {
-            $query->whereIn('folder_id', array_keys($folders));
+        if ($folders = array_get($this->getConfig(), 'folders')) {
+            $query->whereIn('folder_id', $folders);
+        }
+
+        if ($allowed = array_get($this->getConfig(), 'allowed_types')) {
+            $query->whereIn('extension', $allowed);
         }
     }
 
     /**
-     * Get the folders.
+     * Get the config.
      *
      * @return array
      */
-    public function getFolders()
+    public function getConfig()
     {
-        return $this->folders;
+        return $this->config;
     }
 
     /**
-     * Set the folders.
+     * Set the config.
      *
-     * @param  array $folders
+     * @param  array $config
      * @return $this
      */
-    public function setFolders(array $folders = [])
+    public function setConfig(array $config = [])
     {
-        $this->folders = $folders;
+        $this->config = $config;
 
         return $this;
     }

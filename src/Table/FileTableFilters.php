@@ -7,17 +7,25 @@ use Illuminate\Contracts\Cache\Repository;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Http\Request;
 
+/**
+ * Class FileTableFilters
+ *
+ * @link   http://pyrocms.com/
+ * @author PyroCMS, Inc. <support@pyrocms.com>
+ * @author Ryan Thompson <ryan@pyrocms.com>
+ */
 class FileTableFilters
 {
+
     use DispatchesJobs;
 
     /**
      * Handle the filters.
      *
-     * @param FileTableBuilder          $builder
+     * @param FileTableBuilder $builder
      * @param FolderRepositoryInterface $folders
-     * @param Repository                $cache
-     * @param Request                   $request
+     * @param Repository $cache
+     * @param Request $request
      */
     public function handle(
         FileTableBuilder $builder,
@@ -42,7 +50,6 @@ class FileTableFilters
         }
 
         $builder
-            ->setFolders($allowed)
             ->setFilters(
                 [
                     'folder' => [
