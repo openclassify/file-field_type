@@ -1,6 +1,7 @@
 <?php namespace Anomaly\FileFieldType\Table;
 
 use Anomaly\FilesModule\File\FileModel;
+use Anomaly\FilesModule\Folder\Command\GetFolder;
 use Anomaly\Streams\Platform\Ui\Table\TableBuilder;
 use Illuminate\Database\Eloquent\Builder;
 
@@ -97,7 +98,26 @@ class FileTableBuilder extends TableBuilder
     public function onQuerying(Builder $query)
     {
         if ($folders = array_get($this->getConfig(), 'folders')) {
-            $query->whereIn('folder_id', $folders);
+            $query->whereIn(
+                'folder_id',
+                array_filter(
+                    array_map(
+                        function ($folder) {
+
+                            if (is_numeric($folder)) {
+                                return $folder;
+                            }
+
+                            if ($folder = $this->dispatch(new GetFolder($folder))) {
+                                return $folder->getId();
+                            }
+
+                            return null;
+                        },
+                        $folders
+                    )
+                )
+            );
         }
 
         if ($allowed = array_get($this->getConfig(), 'allowed_types')) {
