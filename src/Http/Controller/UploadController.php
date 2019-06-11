@@ -61,7 +61,7 @@ class UploadController extends AdminController
             return $this->response->json($file->getAttributes());
         }
 
-        return $this->response->json(['error' => 'There was a problem uploading the file.'], 500);
+        return $this->response->json(['message' => 'There was a problem uploading the file.'], 500);
     }
 
     /**
