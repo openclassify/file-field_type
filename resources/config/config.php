@@ -2,19 +2,19 @@
 
 
 return [
-    'folders' => [
+    'folders'       => [
         'type'   => 'anomaly.field_type.checkboxes',
         'config' => [
             'handler' => \Anomaly\FileFieldType\Support\Config\FoldersHandler::class,
         ],
     ],
-    'max'     => [
+    'max'           => [
         'type'   => 'anomaly.field_type.decimal',
         'config' => [
             'decimals' => 1,
         ],
     ],
-    'mode'    => [
+    'mode'          => [
         'required' => true,
         'type'     => 'anomaly.field_type.select',
         'config'   => [

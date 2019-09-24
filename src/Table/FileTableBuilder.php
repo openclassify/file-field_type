@@ -103,12 +103,11 @@ class FileTableBuilder extends TableBuilder
                 array_filter(
                     array_map(
                         function ($folder) {
-
                             if (is_numeric($folder)) {
                                 return $folder;
                             }
 
-                            if ($folder = $this->dispatch(new GetFolder($folder))) {
+                            if ($folder = dispatch_now(new GetFolder($folder))) {
                                 return $folder->getId();
                             }
 

@@ -73,6 +73,30 @@ class FileFieldType extends FieldType
     }
 
     /**
+     * Get the database column name.
+     *
+     * @return null|string
+     */
+    public function getColumnName()
+    {
+        return parent::getColumnName() . '_id';
+    }
+
+    /**
+     * Return the config key.
+     *
+     * @return string
+     */
+    public function configKey()
+    {
+        $key = md5(json_encode($this->getConfig()));
+
+        $this->cache->put('file-field_type::' . $key, $this->getConfig(), 30);
+
+        return $key;
+    }
+
+    /**
      * Get the config.
      *
      * @return array
@@ -97,30 +121,6 @@ class FileFieldType extends FieldType
         array_set($config, 'folders', (array)$this->config('folders', []));
 
         return $config;
-    }
-
-    /**
-     * Get the database column name.
-     *
-     * @return null|string
-     */
-    public function getColumnName()
-    {
-        return parent::getColumnName() . '_id';
-    }
-
-    /**
-     * Return the config key.
-     *
-     * @return string
-     */
-    public function configKey()
-    {
-        $key = md5(json_encode($this->getConfig()));
-
-        $this->cache->put('file-field_type::' . $key, $this->getConfig(), 30);
-
-        return $key;
     }
 
     /**

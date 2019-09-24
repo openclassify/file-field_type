@@ -15,7 +15,8 @@
 {% endif %}
 
 <input type="hidden" name="{{ field_type.input_name }}"
-       value="{{ field_type.value.id ?: field_type.value }}" data-field_name="{{ field_type.input_name }}" {{ html_attributes(field_type.attributes) }} {{ field_type.disabled ? 'disabled' }} {{ field_type.readonly ? 'readonly' }}>
+       value="{{ field_type.value.id ?: field_type.value }}"
+       data-field_name="{{ field_type.input_name }}" {{ html_attributes(field_type.attributes) }} {{ field_type.disabled ? 'disabled' }} {{ field_type.readonly ? 'readonly' }}>
 
 <div class="selected">
     {{ field_type.value_table|raw }}

@@ -33,7 +33,7 @@ class GetUploadFile
     /**
      * Handle the command.
      *
-     * @param  Request                                                   $request
+     * @param  Request $request
      * @return array|\Symfony\Component\HttpFoundation\File\UploadedFile
      */
     public function handle(Request $request)

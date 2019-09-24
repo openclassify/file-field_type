@@ -35,5 +35,4 @@ class FileFieldTypeServiceProvider extends AddonServiceProvider
         'streams/file-field_type/handle'          => 'Anomaly\FileFieldType\Http\Controller\UploadController@upload',
         'streams/file-field_type/recent'          => 'Anomaly\FileFieldType\Http\Controller\UploadController@recent',
     ];
-
 }

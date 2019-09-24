@@ -40,9 +40,9 @@ class PerformUpload
      *
      * @param DiskRepositoryInterface $disks
      * @param FileRepositoryInterface $files
-     * @param FileFieldTypeParser     $parser
-     * @param Request                 $request
-     * @param MountManager            $manager
+     * @param FileFieldTypeParser $parser
+     * @param Request $request
+     * @param MountManager $manager
      *
      * @return null|bool|FileInterface
      */
@@ -63,7 +63,6 @@ class PerformUpload
          * some kind of input.
          */
         if ($file === null) {
-
             if (!$value) {
                 return null;
             }
@@ -84,6 +83,6 @@ class PerformUpload
         $path = (!empty($path) ? $path . '/' : null) . $file->getClientOriginalName();
 
         //return $manager->putStream($disk->path($path), fopen($file->getRealPath(), 'r+'));
-         return $manager->putStream($disk->getSlug() . '://' . $path, fopen($file->getRealPath(), 'r+'));
+        return $manager->putStream($disk->getSlug() . '://' . $path, fopen($file->getRealPath(), 'r+'));
     }
 }

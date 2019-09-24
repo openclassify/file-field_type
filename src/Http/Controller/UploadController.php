@@ -19,7 +19,7 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 class UploadController extends AdminController
 {
 
-    use DispatchesJobs;
+
 
     /**
      * Return the uploader.
@@ -37,7 +37,7 @@ class UploadController extends AdminController
 
         $allowed = array_intersect(array_get($config, 'allowed_types', []), $folder->getAllowedTypes());
 
-        return $this->view->make(
+        return view(
             'anomaly.field_type.file::upload/index',
             [
                 'allowed' => $allowed ?: $folder->getAllowedTypes(),
@@ -57,7 +57,7 @@ class UploadController extends AdminController
      */
     public function upload(FileUploader $uploader, FolderRepositoryInterface $folders)
     {
-        if ($file = $uploader->upload($this->request->file('upload'), $folders->find($this->request->get('folder')))) {
+        if ($file = $uploader->upload($this->request->file('upload'), $folders->find(request('folder')))) {
             return $this->response->json($file->getAttributes());
         }
 
@@ -72,7 +72,7 @@ class UploadController extends AdminController
      */
     public function recent(UploadTableBuilder $table)
     {
-        return $table->setUploaded(explode(',', $this->request->get('uploaded')))
+        return $table->setUploaded(explode(',', request('uploaded')))
             ->make()
             ->getTableContent();
     }

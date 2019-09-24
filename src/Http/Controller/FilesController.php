@@ -46,7 +46,7 @@ class FilesController extends AdminController
         foreach (array_get($config, 'folders', []) as $identifier) {
 
             /* @var FolderInterface $folder */
-            if ($folder = $this->dispatch(new GetFolder($identifier))) {
+            if ($folder = dispatch_now(new GetFolder($identifier))) {
                 $allowed[] = $folder;
             }
         }
@@ -55,7 +55,7 @@ class FilesController extends AdminController
             $allowed = $folders->all();
         }
 
-        return $this->view->make(
+        return view(
             'anomaly.field_type.file::choose',
             [
                 'key'     => $key,
@@ -72,7 +72,7 @@ class FilesController extends AdminController
      */
     public function selected(ValueTableBuilder $table)
     {
-        return $table->setUploaded(explode(',', $this->request->get('uploaded')))->make()->getTableContent();
+        return $table->setUploaded(explode(',', request('uploaded')))->make()->getTableContent();
     }
 
     /**
@@ -88,9 +88,9 @@ class FilesController extends AdminController
         $exists  = false;
 
         /* @var FolderInterface|null $folder */
-        $folder = $this->dispatch(new GetFolder($folder));
+        $folder = dispatch_now(new GetFolder($folder));
 
-        if ($folder && $file = $files->findByNameAndFolder($this->request->get('file'), $folder)) {
+        if ($folder && $file = $files->findByNameAndFolder(request('file'), $folder)) {
             $exists = true;
         }
 
