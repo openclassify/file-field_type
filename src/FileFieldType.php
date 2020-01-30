@@ -3,8 +3,9 @@
 use Anomaly\FileFieldType\Table\ValueTableBuilder;
 use Anomaly\FilesModule\File\Contract\FileInterface;
 use Anomaly\Streams\Platform\Addon\FieldType\FieldType;
-use Illuminate\Contracts\Cache\Repository;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Crypt;
 
 /**
  * Class FileFieldType
@@ -41,23 +42,6 @@ class FileFieldType extends FieldType
     ];
 
     /**
-     * The cache repository.
-     *
-     * @var Repository
-     */
-    protected $cache;
-
-    /**
-     * Create a new FileFieldType instance.
-     *
-     * @param Repository $cache
-     */
-    public function __construct(Repository $cache)
-    {
-        $this->cache = $cache;
-    }
-
-    /**
      * Get the relation.
      *
      * @return BelongsTo
@@ -67,7 +51,7 @@ class FileFieldType extends FieldType
         $entry = $this->getEntry();
 
         return $entry->belongsTo(
-            array_get($this->config, 'related', 'Anomaly\FilesModule\File\FileModel'),
+            Arr::get($this->config, 'related', 'Anomaly\FilesModule\File\FileModel'),
             $this->getColumnName()
         );
     }
@@ -86,15 +70,15 @@ class FileFieldType extends FieldType
 
         $server = $file > $post ? $post : $file;
 
-        $max = array_get($config, 'max');
+        $max = Arr::get($config, 'max');
 
         if ($max && $max > $server) {
             $max = $server;
         }
 
-        array_set($config, 'max', $max);
+        Arr::set($config, 'max', $max);
 
-        array_set($config, 'folders', (array)$this->config('folders', []));
+        Arr::set($config, 'folders', (array)$this->config('folders', []));
 
         return $config;
     }
@@ -116,11 +100,7 @@ class FileFieldType extends FieldType
      */
     public function configKey()
     {
-        $key = md5(json_encode($this->getConfig()));
-
-        $this->cache->put('file-field_type::' . $key, $this->getConfig(), 30);
-
-        return $key;
+        return Crypt::encrypt($this->getConfig());
     }
 
     /**
