@@ -7,8 +7,8 @@ use Anomaly\FilesModule\Folder\Command\GetFolder;
 use Anomaly\FilesModule\Folder\Contract\FolderInterface;
 use Anomaly\FilesModule\Folder\Contract\FolderRepositoryInterface;
 use Anomaly\Streams\Platform\Http\Controller\AdminController;
-use Illuminate\Contracts\Cache\Repository;
-use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Crypt;
 
 /**
  * Class FilesController
@@ -23,27 +23,32 @@ class FilesController extends AdminController
     /**
      * Return an index of existing files.
      *
-     * @param  FileTableBuilder                           $table
+     * @param FileTableBuilder $table
+     * @param                  $key
+     *
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function index(FileTableBuilder $table)
+    public function index(FileTableBuilder $table, $key)
     {
-        return $table->setConfig(cache('file-field_type::' . request()->route('key'), []))->render();
+        return $table->setConfig(Crypt::decrypt($key))->render();
     }
 
     /**
      * Return a list of folders to choose from.
      *
-     * @param  FolderRepositoryInterface $folders
-     * @return \Illuminate\View\View
+     * @param FolderRepositoryInterface $folders
+     * @param                           $key
+     *
+     * @return \Illuminate\Contracts\View\View|mixed
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
-    public function choose(FolderRepositoryInterface $folders)
+    public function choose(FolderRepositoryInterface $folders, $key)
     {
         $allowed = [];
 
-        $config = cache('file-field_type::' . ($key = request()->route('key')), []);
+        $config = Crypt::decrypt($key);
 
-        foreach (array_get($config, 'folders', []) as $identifier) {
+        foreach (Arr::get($config, 'folders', []) as $identifier) {
 
             /* @var FolderInterface $folder */
             if ($folder = $this->dispatch(new GetFolder($identifier))) {
@@ -67,7 +72,8 @@ class FilesController extends AdminController
     /**
      * Return a table of selected files.
      *
-     * @param  ValueTableBuilder $table
+     * @param ValueTableBuilder $table
+     *
      * @return null|string
      */
     public function selected(ValueTableBuilder $table)
@@ -80,12 +86,13 @@ class FilesController extends AdminController
      *
      * @param FileRepositoryInterface $files
      * @param                         $folder
+     *
      * @return \Illuminate\Http\JsonResponse
      */
     public function exists(FileRepositoryInterface $files, $folder)
     {
         $success = true;
-        $exists  = false;
+        $exists = false;
 
         /* @var FolderInterface|null $folder */
         $folder = $this->dispatch(new GetFolder($folder));
