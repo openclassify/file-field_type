@@ -8,6 +8,8 @@ use Anomaly\FilesModule\Folder\Contract\FolderInterface;
 use Anomaly\FilesModule\Folder\Contract\FolderRepositoryInterface;
 use Anomaly\Streams\Platform\Http\Controller\AdminController;
 use Illuminate\Foundation\Bus\DispatchesJobs;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Crypt;
 
 /**
  * Class UploadController
@@ -33,9 +35,9 @@ class UploadController extends AdminController
         /* @var FolderInterface $folder */
         $folder = dispatch_now(new GetFolder($folder));
 
-        $config = cache('file-field_type::' . request('key'), []);
+        $config = Crypt::decrypt(request('key'));
 
-        $allowed = array_intersect(array_get($config, 'allowed_types', []), $folder->getAllowedTypes());
+        $allowed = array_intersect( Arr::get($config, 'allowed_types', []), $folder->getAllowedTypes());
 
         return $this->view->make(
             'anomaly.field_type.file::upload/index',
