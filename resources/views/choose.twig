@@ -13,7 +13,7 @@
         <ul class="nav nav-pills nav-stacked">
             {% for folder in folders %}
                 <li class="nav-item">
-                    <a href="{{ url_to('streams/file-field_type/upload/' ~ folder.id) }}?key={{ key }}"
+                    <a href="{{ url_to('streams/file-field_type/upload/' ~ folder.id ~ '/' ~ key) }}"
                        class="ajax nav-link">
                         <strong>{{ folder.name }}</strong>
                         <br>
