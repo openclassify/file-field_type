@@ -1,11 +1,13 @@
-<?php namespace Anomaly\FileFieldType;
+<?php
 
+namespace Anomaly\FileFieldType;
+
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Cache;
 use Anomaly\FileFieldType\Table\ValueTableBuilder;
 use Anomaly\FilesModule\File\Contract\FileInterface;
-use Anomaly\Streams\Platform\Addon\FieldType\FieldType;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Crypt;
+use Anomaly\Streams\Platform\Addon\FieldType\FieldType;
 
 /**
  * Class FileFieldType
@@ -100,7 +102,11 @@ class FileFieldType extends FieldType
      */
     public function configKey()
     {
-        return Crypt::encrypt($this->getConfig());
+        Cache::remember($this->getInputName() . '-config', 60 * 60 * 24, function () {
+            return $this->getConfig();
+        });
+
+        return $this->getInputName() . '-config';
     }
 
     /**

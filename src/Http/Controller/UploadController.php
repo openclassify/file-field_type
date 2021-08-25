@@ -1,15 +1,16 @@
-<?php namespace Anomaly\FileFieldType\Http\Controller;
+<?php
 
-use Anomaly\FileFieldType\Table\FileTableBuilder;
-use Anomaly\FileFieldType\Table\UploadTableBuilder;
-use Anomaly\FilesModule\File\FileUploader;
-use Anomaly\FilesModule\Folder\Command\GetFolder;
-use Anomaly\FilesModule\Folder\Contract\FolderInterface;
-use Anomaly\FilesModule\Folder\Contract\FolderRepositoryInterface;
-use Anomaly\Streams\Platform\Http\Controller\AdminController;
-use Illuminate\Foundation\Bus\DispatchesJobs;
+namespace Anomaly\FileFieldType\Http\Controller;
+
 use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Cache;
+use Anomaly\FilesModule\File\FileUploader;
+use Illuminate\Foundation\Bus\DispatchesJobs;
+use Anomaly\FileFieldType\Table\FileTableBuilder;
+use Anomaly\FilesModule\Folder\Command\GetFolder;
+use Anomaly\FileFieldType\Table\UploadTableBuilder;
+use Anomaly\Streams\Platform\Http\Controller\AdminController;
+use Anomaly\FilesModule\Folder\Contract\FolderRepositoryInterface;
 
 /**
  * Class UploadController
@@ -36,9 +37,9 @@ class UploadController extends AdminController
         /* @var FolderInterface $folder */
         $folder = dispatch_now(new GetFolder($folder));
 
-        $config = Crypt::decrypt($key);
+        $config = Cache::get($key);
 
-        $allowed = array_intersect( Arr::get($config, 'allowed_types', []), $folder->getAllowedTypes());
+        $allowed = array_intersect(Arr::get($config, 'allowed_types', []), $folder->getAllowedTypes());
 
         return $this->view->make(
             'anomaly.field_type.file::upload/index',
