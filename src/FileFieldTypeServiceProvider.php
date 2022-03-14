@@ -1,4 +1,4 @@
-<?php namespace Anomaly\FileFieldType;
+<?php namespace Visiosoft\FileFieldType;
 
 use Anomaly\Streams\Platform\Addon\AddonServiceProvider;
 
@@ -27,13 +27,13 @@ class FileFieldTypeServiceProvider extends AddonServiceProvider
      * @var array
      */
     protected $routes = [
-        'streams/file-field_type/index/{key}'           => 'Anomaly\FileFieldType\Http\Controller\FilesController@index',
-        'streams/file-field_type/choose/{key}'          => 'Anomaly\FileFieldType\Http\Controller\FilesController@choose',
-        'streams/file-field_type/selected'              => 'Anomaly\FileFieldType\Http\Controller\FilesController@selected',
-        'streams/file-field_type/exists/{folder}'       => 'Anomaly\FileFieldType\Http\Controller\FilesController@exists',
-        'streams/file-field_type/upload/{folder}/{key}' => 'Anomaly\FileFieldType\Http\Controller\UploadController@index',
-        'streams/file-field_type/handle'                => 'Anomaly\FileFieldType\Http\Controller\UploadController@upload',
-        'streams/file-field_type/recent'                => 'Anomaly\FileFieldType\Http\Controller\UploadController@recent',
+        'streams/file-field_type/index/{key}'           => 'Visiosoft\FileFieldType\Http\Controller\FilesController@index',
+        'streams/file-field_type/choose/{key}'          => 'Visiosoft\FileFieldType\Http\Controller\FilesController@choose',
+        'streams/file-field_type/selected'              => 'Visiosoft\FileFieldType\Http\Controller\FilesController@selected',
+        'streams/file-field_type/exists/{folder}'       => 'Visiosoft\FileFieldType\Http\Controller\FilesController@exists',
+        'streams/file-field_type/upload/{folder}/{key}' => 'Visiosoft\FileFieldType\Http\Controller\UploadController@index',
+        'streams/file-field_type/handle'                => 'Visiosoft\FileFieldType\Http\Controller\UploadController@upload',
+        'streams/file-field_type/recent'                => 'Visiosoft\FileFieldType\Http\Controller\UploadController@recent',
     ];
 
 }

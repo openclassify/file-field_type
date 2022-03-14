@@ -1,10 +1,10 @@
-<?php namespace Anomaly\FileFieldType\Http\Controller;
+<?php namespace Visiosoft\FileFieldType\Http\Controller;
 
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Cache;
-use Anomaly\FileFieldType\Table\FileTableBuilder;
+use Visiosoft\FileFieldType\Table\FileTableBuilder;
 use Anomaly\FilesModule\Folder\Command\GetFolder;
-use Anomaly\FileFieldType\Table\ValueTableBuilder;
+use Visiosoft\FileFieldType\Table\ValueTableBuilder;
 use Anomaly\Streams\Platform\Http\Controller\AdminController;
 use Anomaly\FilesModule\File\Contract\FileRepositoryInterface;
 use Anomaly\FilesModule\Folder\Contract\FolderRepositoryInterface;

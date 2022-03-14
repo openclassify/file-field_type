@@ -1,4 +1,4 @@
-<?php namespace Anomaly\FileFieldType\Table;
+<?php namespace Visiosoft\FileFieldType\Table;
 
 use Anomaly\FilesModule\File\FileModel;
 use Anomaly\FilesModule\Folder\Command\GetFolder;

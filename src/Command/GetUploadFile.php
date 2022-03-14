@@ -1,6 +1,6 @@
-<?php namespace Anomaly\FileFieldType\Command;
+<?php namespace Visiosoft\FileFieldType\Command;
 
-use Anomaly\FileFieldType\FileFieldType;
+use Visiosoft\FileFieldType\FileFieldType;
 use Illuminate\Http\Request;
 
 /**

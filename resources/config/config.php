@@ -5,7 +5,7 @@ return [
     'folders' => [
         'type'   => 'anomaly.field_type.checkboxes',
         'config' => [
-            'handler' => \Anomaly\FileFieldType\Support\Config\FoldersHandler::class,
+            'handler' => \Visiosoft\FileFieldType\Support\Config\FoldersHandler::class,
         ],
     ],
     'max'     => [

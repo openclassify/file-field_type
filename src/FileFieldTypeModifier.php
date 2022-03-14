@@ -1,4 +1,4 @@
-<?php namespace Anomaly\FileFieldType;
+<?php namespace Visiosoft\FileFieldType;
 
 use Anomaly\FilesModule\File\Contract\FileInterface;
 use Anomaly\FilesModule\File\Contract\FileRepositoryInterface;
