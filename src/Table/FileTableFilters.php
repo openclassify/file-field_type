@@ -1,4 +1,4 @@
-<?php namespace Anomaly\FileFieldType\Table;
+<?php namespace Visiosoft\FileFieldType\Table;
 
 use Illuminate\Support\Arr;
 use Illuminate\Http\Request;

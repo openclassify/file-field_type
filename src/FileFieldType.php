@@ -1,10 +1,10 @@
 <?php
 
-namespace Anomaly\FileFieldType;
+namespace Visiosoft\FileFieldType;
 
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Cache;
-use Anomaly\FileFieldType\Table\ValueTableBuilder;
+use Visiosoft\FileFieldType\Table\ValueTableBuilder;
 use Anomaly\FilesModule\File\Contract\FileInterface;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Anomaly\Streams\Platform\Addon\FieldType\FieldType;

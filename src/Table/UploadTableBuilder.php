@@ -1,4 +1,4 @@
-<?php namespace Anomaly\FileFieldType\Table;
+<?php namespace Visiosoft\FileFieldType\Table;
 
 use Anomaly\FilesModule\File\FileModel;
 use Anomaly\Streams\Platform\Ui\Table\TableBuilder;
@@ -71,7 +71,7 @@ class UploadTableBuilder extends TableBuilder
             'sort_column' => 'size',
             'value'       => 'entry.readable_size',
         ],
-        'mime_type',
+//        'mime_type',
         'folder',
     ];
 

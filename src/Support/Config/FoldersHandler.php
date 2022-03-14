@@ -1,4 +1,4 @@
-<?php namespace Anomaly\FileFieldType\Support\Config;
+<?php namespace Visiosoft\FileFieldType\Support\Config;
 
 use Anomaly\CheckboxesFieldType\CheckboxesFieldType;
 use Anomaly\FilesModule\Folder\Contract\FolderRepositoryInterface;

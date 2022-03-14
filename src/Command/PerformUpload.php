@@ -1,7 +1,7 @@
-<?php namespace Anomaly\FileFieldType\Command;
+<?php namespace Visiosoft\FileFieldType\Command;
 
-use Anomaly\FileFieldType\FileFieldType;
-use Anomaly\FileFieldType\FileFieldTypeParser;
+use Visiosoft\FileFieldType\FileFieldType;
+use Visiosoft\FileFieldType\FileFieldTypeParser;
 use Anomaly\FilesModule\Disk\Contract\DiskRepositoryInterface;
 use Anomaly\FilesModule\File\Contract\FileInterface;
 use Anomaly\FilesModule\File\Contract\FileRepositoryInterface;

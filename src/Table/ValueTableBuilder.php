@@ -1,4 +1,4 @@
-<?php namespace Anomaly\FileFieldType\Table;
+<?php namespace Visiosoft\FileFieldType\Table;
 
 use Anomaly\FilesModule\File\FileModel;
 use Anomaly\Streams\Platform\Ui\Table\TableBuilder;
@@ -57,7 +57,7 @@ class ValueTableBuilder extends TableBuilder
             'sort_column' => 'size',
             'value'       => 'entry.readable_size',
         ],
-        'mime_type',
+//        'mime_type',
         'folder',
     ];
 
@@ -67,15 +67,15 @@ class ValueTableBuilder extends TableBuilder
      * @var array
      */
     protected $buttons = [
-        'edit'   => [
-            'target'     => '_blank',
-            'href'       => 'admin/files/edit/{entry.id}',
-            'permission' => 'anomaly.module.files::files.write',
-        ],
-        'view'   => [
-            'target' => '_blank',
-            'href'   => 'admin/files/view/{entry.id}',
-        ],
+//        'edit'   => [
+//            'target'     => '_blank',
+//            'href'       => 'admin/files/edit/{entry.id}',
+//            'permission' => 'anomaly.module.files::files.write',
+//        ],
+//        'view'   => [
+//            'target' => '_blank',
+//            'href'   => 'admin/files/view/{entry.id}',
+//        ],
         'remove' => [
             'data-dismiss' => 'file',
         ],
